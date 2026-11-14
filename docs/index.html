@@ -76,7 +76,34 @@
       transition: color 0.2s, border-color 0.2s;
     }
 
-    nav a:hover { color: #fff; border-color: #7cb874; }
+    nav a:hover, nav a.active { color: #fff; border-color: #7cb874; }
+
+    /* ── Dropdown ── */
+    .nav-group { position: relative; display: flex; align-items: center; }
+    .nav-group > a { cursor: pointer; }
+    .nav-group > a::after { content: " ▾"; font-size: 0.7rem; opacity: 0.7; }
+    .subnav {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a3517;
+      border: 1px solid rgba(200,223,197,0.2);
+      border-radius: 6px;
+      min-width: 150px;
+      z-index: 100;
+      padding: 0.3rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .subnav a {
+      display: block;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      border-bottom: none;
+      white-space: nowrap;
+    }
+    .nav-group:hover .subnav { display: block; }
 
     main {
       max-width: 860px;
@@ -273,6 +300,10 @@
       }
       nav a:last-child { border-bottom: none; }
       nav.open a { display: block; }
+      nav.open .nav-group { display: block; width: 100%; }
+      nav.open .subnav { display: none; position: static; transform: none; box-shadow: none; border-radius: 0; background: #152c12; padding: 0; min-width: auto; }
+      nav.open .nav-group.sub-open .subnav { display: block; }
+      nav.open .subnav a { padding: 0.6rem 1.5rem; font-size: 0.88rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
       nav.open { flex-wrap: wrap; padding-top: 3rem; }
 
       main { padding: 0 1rem; }
@@ -295,14 +326,18 @@
 
   <nav>
     <button class="nav-toggle" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
-    <a href="index.html">Übersicht</a>
+    <a href="index.html" class="active">Übersicht</a>
+    <div class="nav-group">
+      <a href="reisezeit.html">Reisezeit</a>
+      <div class="subnav">
+        <a href="regenzeit.html">Regenzeiten</a>
+        <a href="migration.html">Migration</a>
+      </div>
+    </div>
     <a href="route.html">Route</a>
     <a href="unterkunft.html">Unterkunft</a>
     <a href="transport.html">Transport</a>
     <a href="budget.html">Budget</a>
-    <a href="reisezeit.html">Reisezeit</a>
-    <a href="regenzeit.html">Regenzeit</a>
-    <a href="migration.html">Migration</a>
   </nav>
 
   <main>
@@ -327,15 +362,15 @@
       <div class="route-step">
         <div class="route-dot">2</div>
         <div class="route-content">
-          <strong>Lake Naivasha &mdash; Crescent Island (2&ndash;3 Nächte)</strong>
-          <span>Fu&szlig;-Safari zwischen Giraffen &amp; Zebras, Fish Eagle Cottage</span>
+          <strong>Massai Mara &mdash; Safari (2 Nächte)</strong>
+          <span>2 Game Drives, Mara Explorers oder Mara Siria Camp</span>
         </div>
       </div>
       <div class="route-step">
         <div class="route-dot">3</div>
         <div class="route-content">
-          <strong>Massai Mara &mdash; Safari (2 Nächte)</strong>
-          <span>2 Game Drives, Mara Explorers oder Mara Siria Camp</span>
+          <strong>Lake Naivasha &mdash; Crescent Island (2 Nächte)</strong>
+          <span>Fu&szlig;-Safari zwischen Giraffen &amp; Zebras, Fish Eagle Cottage</span>
         </div>
       </div>
       <div class="route-step">
@@ -369,13 +404,30 @@
         <img class="karte-img"
           src="https://a0.muscache.com/im/pictures/hosting/Hosting-548139208810754740/original/c0e1b3b2-d9e6-449e-ac3c-0b5f2c5fb3e7.jpeg?im_w=720"
           alt="Mara Explorers Camp"
-          onerror="this.src='https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=720&q=80'">
+          onerror="this.src='https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NTQ4MTM5MjA4ODEwNzU0NzQw/original/376fb021-9b29-48af-af9e-aa002a736977.jpeg?im_w=720'">
         <div class="karte-body">
           <h2>Mara Explorers Camp &#11088;</h2>
           <p>Kleines, intimes Luxuscamp am Talek River. Persönlicher Kontakt (Moses &amp; Laura). Vollpension, eigener Jeep. Herbstferien: <strong>1.575 € Gesamtpreis</strong> &mdash; Osterferien: ausgebucht.</p>
           <div class="link-row">
             <a class="btn" href="unterkunft.html#mara">Details</a>
             <a class="btn btn-ghost" href="https://www.airbnb.de/rooms/548139208810754740" target="_blank">Airbnb</a>
+            <a class="btn btn-ghost" href="https://mara-explorers.com/about-us/" target="_blank">Website</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="karte">
+        <img class="karte-img"
+          src="https://mara-siria-camp.com/wp-content/uploads/2025/02/Camp2.jpg"
+          alt="Mara Siria Tented Camp"
+          onerror="this.src='https://mara-siria-camp.com/wp-content/uploads/2026/07/Camp-intro-thumbnail-1.webp'">
+        <div class="karte-body">
+          <h2>Mara Siria Tented Camp</h2>
+          <p>Hochklassiges Luxuscamp, Transfer von Nairobi buchbar. Herbstferien: <strong>~3.000 €</strong> mit Bruder-Kontakt (EA Resident Rates), ~4.000 € ohne. Alternative zu Mara Explorers.</p>
+          <div class="link-row">
+            <a class="btn" href="unterkunft.html#mara">Details</a>
+            <a class="btn btn-ghost" href="https://www.booking.com/hotel/ke/mara-siria-luxury-tented-camp.de.html" target="_blank">Booking.com</a>
+            <a class="btn btn-ghost" href="https://mara-siria-camp.com/de/" target="_blank">Website</a>
           </div>
         </div>
       </div>
@@ -384,7 +436,7 @@
         <img class="karte-img"
           src="https://a0.muscache.com/im/pictures/miso/Hosting-52229925/original/c0e1b3b2-3e2a-4b10-ab94-0f2c5fb3e7a1.jpeg?im_w=720"
           alt="Fish Eagle Cottage Crescent Island"
-          onerror="this.src='https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?w=720&q=80'">
+          onerror="this.src='https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NTIyMjk5MjU%3D/original/812d7d11-dbf7-47b9-9f40-f03f106953bd.png?im_w=720'">
         <div class="karte-body">
           <h2>Fish Eagle Cottage &mdash; Crescent Island</h2>
           <p>Direkt auf der Crescent Island, mitten im Wildschutzgebiet. 2 Schlafzimmer, 4,96/5 (227 Bewertungen). Herbstferien 3 Nächte: <strong>665 €</strong>.</p>
@@ -400,17 +452,32 @@
         <img class="karte-img"
           src="https://a0.muscache.com/im/pictures/miso/Hosting-39127675/original/c0e1b3b2-0b5f-4b10-ab94-0f2c5fb3e7a1.jpeg?im_w=720"
           alt="Njera Haus Watamu"
-          onerror="this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=720&q=80'">
+          onerror="this.src='https://a0.muscache.com/im/pictures/281e8320-7791-442d-a2ac-7102de7e8a89.jpg?im_w=720'">
         <div class="karte-body">
           <h2>Njera Haus &mdash; Watamu</h2>
           <p>3 Schlafzimmer, privater Pool, direkte Strandlage am Indischen Ozean. Klimaanlage, BBQ, Hängematte, Sonos. Preis auf Anfrage direkt bei Airbnb.</p>
           <div class="link-row">
             <a class="btn" href="unterkunft.html#kueste">Details</a>
             <a class="btn btn-ghost" href="https://www.airbnb.de/rooms/39127675" target="_blank">Airbnb</a>
+            <a class="btn btn-ghost" href="https://njerahouse.com/" target="_blank">Website</a>
           </div>
         </div>
       </div>
 
+    </div>
+
+    <p class="section-title">Offene Grundsatzfragen</p>
+    <div class="highlight-box">
+      <strong>Diese Entscheidungen bestimmen alle Details:</strong>
+      <ul style="margin-top:0.6rem;padding-left:1.2rem;line-height:2;">
+        <li>Osterferien oder Herbstferien? <em>(beeinflusst Flugpreis, Wetter, Verfügbarkeit)</em></li>
+        <li>Ab welchem deutschen Flughafen? <em>(Frankfurt = einziger Direktflug)</em></li>
+        <li>Direktflug (Aufpreis) oder Umsteigeflug akzeptabel?</li>
+        <li>Mara Camp: Mara Explorers (unter 2.000 €) oder Mara Siria (~3.000 € mit Kontakt)?</li>
+        <li>Mara-Anreise: Inlandsflug (1.275–1.820 €) oder Shuttle Mara Explorers (~300 €)?</li>
+        <li>Küste: Zug hin + Flug zurück von Malindi (Expertenempfehlung) oder Hin+Rück Flug?</li>
+      </ul>
+      <p style="margin-top:0.6rem;font-size:0.88rem;">Details: <a href="budget.html" style="color:#1e3d1a;">Budget-Übersicht</a></p>
     </div>
 
     <p class="section-title">Reisezeit</p>
@@ -447,6 +514,15 @@
   <script>
     document.querySelector('.nav-toggle').addEventListener('click', function() {
       this.closest('nav').classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-group > a').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var nav = this.closest('nav');
+        if (nav.classList.contains('open')) {
+          e.preventDefault();
+          this.closest('.nav-group').classList.toggle('sub-open');
+        }
+      });
     });
   </script>
 

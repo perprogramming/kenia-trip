@@ -13,6 +13,13 @@
     nav { background: #1e3d1a; padding: 0.6rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.2rem 1.2rem; justify-content: center; }
     nav a { color: #c8dfc5; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
     nav a:hover, nav a.active { color: #fff; border-color: #7cb874; }
+    /* ── Dropdown ── */
+    .nav-group { position: relative; display: flex; align-items: center; }
+    .nav-group > a { cursor: pointer; }
+    .nav-group > a::after { content: " ▾"; font-size: 0.7rem; opacity: 0.7; }
+    .subnav { display: none; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: #1a3517; border: 1px solid rgba(200,223,197,0.2); border-radius: 6px; min-width: 150px; z-index: 100; padding: 0.3rem 0; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    .subnav a { display: block; width: 100%; padding: 0.5rem 1rem; border-bottom: none; white-space: nowrap; }
+    .nav-group:hover .subnav { display: block; }
     main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
     .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: #7cb874; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e0d9ce; }
     h2 { font-size: 1.5rem; color: #1e3d1a; margin-bottom: 0.4rem; }
@@ -81,6 +88,10 @@
       }
       nav a:last-child { border-bottom: none; }
       nav.open a { display: block; }
+      nav.open .nav-group { display: block; width: 100%; }
+      nav.open .subnav { display: none; position: static; transform: none; box-shadow: none; border-radius: 0; background: #152c12; padding: 0; min-width: auto; }
+      nav.open .nav-group.sub-open .subnav { display: block; }
+      nav.open .subnav a { padding: 0.6rem 1.5rem; font-size: 0.88rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
       nav.open { flex-wrap: wrap; padding-top: 3rem; }
 
       main { padding: 0 1rem; }
@@ -94,25 +105,69 @@
 
   <header>
     <h1>Route &amp; Zeitleiste</h1>
-    <p>Nairobi &mdash; Lake Naivasha &mdash; Massai Mara &mdash; Küste</p>
+    <p>Nairobi &mdash; Massai Mara &mdash; Lake Naivasha &mdash; Küste</p>
   </header>
 
   <nav>
     <button class="nav-toggle" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
     <a href="index.html">Übersicht</a>
+    <div class="nav-group">
+      <a href="reisezeit.html">Reisezeit</a>
+      <div class="subnav">
+        <a href="regenzeit.html">Regenzeiten</a>
+        <a href="migration.html">Migration</a>
+      </div>
+    </div>
     <a href="route.html" class="active">Route</a>
     <a href="unterkunft.html">Unterkunft</a>
     <a href="transport.html">Transport</a>
     <a href="budget.html">Budget</a>
-    <a href="reisezeit.html">Reisezeit</a>
-    <a href="regenzeit.html">Regenzeit</a>
-    <a href="migration.html">Migration</a>
   </nav>
 
   <main>
 
     <p class="section-label">Die zwei Optionen</p>
-    <p>Vier Erwachsene, zwei Wochen (Samstag bis Samstag). Stationen: Nairobi – Lake Naivasha – Massai Mara – Nairobi – Küste – Nairobi.</p>
+    <p>Vier Erwachsene, zwei Wochen (Samstag bis Samstag). Stationen: Nairobi – Massai Mara – Lake Naivasha – Nairobi – Küste – Nairobi.</p>
+
+    <div id="route-map" style="height:420px;border-radius:10px;overflow:hidden;margin-bottom:2rem;border:1px solid #e0d9ce;"></div>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      (function() {
+        var map = L.map('route-map').setView([-1.5, 37.5], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          maxZoom: 18
+        }).addTo(map);
+
+        var stops = [
+          { latlng: [-1.286, 36.820], label: '1 · Nairobi', note: 'Ankunft, Giraffe Centre, National Museum' },
+          { latlng: [-1.500, 35.150], label: '2 · Massai Mara', note: '2 Nächte, 2 Game Drives' },
+          { latlng: [-0.772, 36.430], label: '3 · Lake Naivasha', note: '2 Nächte, Crescent Island' },
+          { latlng: [-1.286, 36.820], label: '4 · Nairobi', note: 'Transfer zur Küste' },
+          { latlng: [-3.356, 40.015], label: '5 · Watamu', note: '3–4 Nächte, Strand & Schnorcheln' }
+        ];
+
+        var icon = function(n) {
+          return L.divIcon({
+            html: '<div style="background:#2d5a27;color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;font-family:Georgia,serif;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.4);">' + n + '</div>',
+            className: '',
+            iconSize: [28, 28],
+            iconAnchor: [14, 14]
+          });
+        };
+
+        stops.forEach(function(s, i) {
+          L.marker(s.latlng, { icon: icon(i + 1) })
+            .addTo(map)
+            .bindPopup('<strong>' + s.label + '</strong><br>' + s.note);
+        });
+
+        // Linie entlang der Route
+        var route = stops.map(function(s) { return s.latlng; });
+        L.polyline(route, { color: '#2d5a27', weight: 2, dashArray: '6 5', opacity: 0.7 }).addTo(map);
+      })();
+    </script>
 
     <div class="option-grid">
       <div class="option-card">
@@ -129,12 +184,12 @@
           <div class="timeline-item">
             <div class="tl-dot"></div>
             <div class="tl-date">Mo 24.03.</div>
-            <div class="tl-place"><strong>Lake Naivasha (2 N)</strong><span>Crescent Island, Fuß-Safari</span></div>
+            <div class="tl-place"><strong>Massai Mara (2 N)</strong><span>2 Game Drives</span></div>
           </div>
           <div class="timeline-item">
             <div class="tl-dot"></div>
             <div class="tl-date">Mi 26.03.</div>
-            <div class="tl-place"><strong>Massai Mara (2 N)</strong><span>2 Game Drives</span></div>
+            <div class="tl-place"><strong>Lake Naivasha (2 N)</strong><span>Crescent Island, Fuß-Safari</span></div>
           </div>
           <div class="timeline-item">
             <div class="tl-dot"></div>
@@ -168,12 +223,12 @@
           <div class="timeline-item">
             <div class="tl-dot"></div>
             <div class="tl-date">Mo 27.10.</div>
-            <div class="tl-place"><strong>Lake Naivasha (2 N)</strong><span>Crescent Island, Fuß-Safari</span></div>
+            <div class="tl-place"><strong>Massai Mara (2 N)</strong><span>2 Game Drives</span></div>
           </div>
           <div class="timeline-item">
             <div class="tl-dot"></div>
             <div class="tl-date">Mi 29.10.</div>
-            <div class="tl-place"><strong>Massai Mara (2 N)</strong><span>2 Game Drives</span></div>
+            <div class="tl-place"><strong>Lake Naivasha (2 N)</strong><span>Crescent Island, Fuß-Safari</span></div>
           </div>
           <div class="timeline-item">
             <div class="tl-dot"></div>
@@ -212,8 +267,8 @@
     <table>
       <tr><th>Datum</th><th>Station</th><th>Nächte</th><th>Hinweis</th></tr>
       <tr><td>Sa 22.03. – Mo 24.03.</td><td>Nairobi</td><td>2</td><td>Ankunft, Giraffe Centre, National Museum (⚠️ Innenstadt nicht empfohlen)</td></tr>
-      <tr><td>Mo 24.03. – Mi 26.03.</td><td>Lake Naivasha – Crescent Island</td><td>2</td><td>Fuß-Safari, Bootsfahrt, Airbnb auf/bei der Insel</td></tr>
-      <tr><td>Mi 26.03. – Fr 28.03.</td><td>Massai Mara</td><td>2</td><td>2 Game Drives; Mara Explorers oder Mara Siria</td></tr>
+      <tr><td>Mo 24.03. – Mi 26.03.</td><td>Massai Mara</td><td>2</td><td>2 Game Drives; Mara Explorers oder Mara Siria</td></tr>
+      <tr><td>Mi 26.03. – Fr 28.03.</td><td>Lake Naivasha – Crescent Island</td><td>2</td><td>Fuß-Safari, Bootsfahrt, Airbnb auf/bei der Insel</td></tr>
       <tr><td>Fr 28.03. – Sa 29.03.</td><td>Nairobi</td><td>1</td><td>Transfer, Übernachtung vor Küstenflug/-zug</td></tr>
       <tr><td>Sa 29.03. – Mi 02.04.</td><td>Küste (Watamu)</td><td>4</td><td>Strand, Schnorcheln, Airbnb</td></tr>
       <tr><td>Mi 02.04. – Sa 03.04.</td><td>Nairobi</td><td>1</td><td>Abflug am Samstag</td></tr>
@@ -227,8 +282,8 @@
     <table>
       <tr><th>Datum</th><th>Station</th><th>Nächte</th><th>Hinweis</th></tr>
       <tr><td>Sa 25.10. – Mo 27.10.</td><td>Nairobi</td><td>2</td><td>Ankunft, Giraffe Centre, National Museum (⚠️ Innenstadt nicht empfohlen)</td></tr>
-      <tr><td>Mo 27.10. – Mi 29.10.</td><td>Lake Naivasha – Crescent Island</td><td>2</td><td>Fuß-Safari, Bootsfahrt, Airbnb auf/bei der Insel</td></tr>
-      <tr><td>Mi 29.10. – Fr 31.10.</td><td>Massai Mara</td><td>2</td><td>2 Game Drives; Mara Explorers oder Mara Siria</td></tr>
+      <tr><td>Mo 27.10. – Mi 29.10.</td><td>Massai Mara</td><td>2</td><td>2 Game Drives; Mara Explorers oder Mara Siria</td></tr>
+      <tr><td>Mi 29.10. – Fr 31.10.</td><td>Lake Naivasha – Crescent Island</td><td>2</td><td>Fuß-Safari, Bootsfahrt, Airbnb auf/bei der Insel</td></tr>
       <tr><td>Fr 31.10. – Sa 01.11.</td><td>Nairobi</td><td>1</td><td>Transfer, Übernachtung vor Küstenflug/-zug</td></tr>
       <tr><td>Sa 01.11. – Mi 05.11.</td><td>Küste (Watamu)</td><td>4</td><td>Strand, Schnorcheln, Airbnb</td></tr>
       <tr><td>Mi 05.11. – Sa 08.11.</td><td>Nairobi</td><td>3</td><td>Puffertage, Abflug am Samstag</td></tr>
@@ -238,15 +293,6 @@
       <strong>Herbstferien NRW:</strong> 23. Oktober – 6. November 2027 (Reise leicht über Ferienende hinaus). Kenia-Saison: Ende Trockenzeit / Übergang – gute Tiersichtungen, trockenere Bedingungen in der Mara.
     </div>
 
-    <p class="section-label">Offene Fragen</p>
-    <ul class="todo-list">
-      <li>Entscheidung: Osterferien oder Herbstferien?</li>
-      <li>Nairobi-Programm: Giraffe Centre, National Museum, Karen Blixen Museum empfohlen – <strong>Innenstadt meiden</strong> (Experte: nicht sicher, überlaufen, nicht sauber)</li>
-      <li>Anreise Naivasha: Fahrer über Bruder (~75 €/Strecke) oder eigener Mietwagen?</li>
-      <li>Mara-Anreise: Inlandsflug oder Shuttle Mara Explorers (~150 €/Strecke)?</li>
-      <li>Küste: Watamu – Rückflug von Malindi (15 km entfernt)?</li>
-    </ul>
-
     <p style="font-size:0.82rem;color:#aaa;margin-top:1rem;">Stand: November 2026</p>
 
   </main>
@@ -255,6 +301,15 @@
   <script>
     document.querySelector('.nav-toggle').addEventListener('click', function() {
       this.closest('nav').classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-group > a').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var nav = this.closest('nav');
+        if (nav.classList.contains('open')) {
+          e.preventDefault();
+          this.closest('.nav-group').classList.toggle('sub-open');
+        }
+      });
     });
   </script>
 

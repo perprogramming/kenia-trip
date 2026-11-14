@@ -13,6 +13,13 @@
     nav { background: #1e3d1a; padding: 0.6rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.2rem 1.2rem; justify-content: center; }
     nav a { color: #c8dfc5; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
     nav a:hover, nav a.active { color: #fff; border-color: #7cb874; }
+    /* ── Dropdown ── */
+    .nav-group { position: relative; display: flex; align-items: center; }
+    .nav-group > a { cursor: pointer; }
+    .nav-group > a::after { content: " ▾"; font-size: 0.7rem; opacity: 0.7; }
+    .subnav { display: none; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: #1a3517; border: 1px solid rgba(200,223,197,0.2); border-radius: 6px; min-width: 150px; z-index: 100; padding: 0.3rem 0; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    .subnav a { display: block; width: 100%; padding: 0.5rem 1rem; border-bottom: none; white-space: nowrap; }
+    .nav-group:hover .subnav { display: block; }
     main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
     .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: #7cb874; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e0d9ce; }
     h2 { font-size: 1.5rem; color: #1e3d1a; margin-bottom: 0.4rem; }
@@ -83,6 +90,10 @@
       }
       nav a:last-child { border-bottom: none; }
       nav.open a { display: block; }
+      nav.open .nav-group { display: block; width: 100%; }
+      nav.open .subnav { display: none; position: static; transform: none; box-shadow: none; border-radius: 0; background: #152c12; padding: 0; min-width: auto; }
+      nav.open .nav-group.sub-open .subnav { display: block; }
+      nav.open .subnav a { padding: 0.6rem 1.5rem; font-size: 0.88rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
       nav.open { flex-wrap: wrap; padding-top: 3rem; }
 
       main { padding: 0 1rem; }
@@ -101,13 +112,17 @@
   <nav>
     <button class="nav-toggle" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
     <a href="index.html">Übersicht</a>
+    <div class="nav-group">
+      <a href="reisezeit.html">Reisezeit</a>
+      <div class="subnav">
+        <a href="regenzeit.html">Regenzeiten</a>
+        <a href="migration.html">Migration</a>
+      </div>
+    </div>
     <a href="route.html">Route</a>
     <a href="unterkunft.html" class="active">Unterkunft</a>
     <a href="transport.html">Transport</a>
     <a href="budget.html">Budget</a>
-    <a href="reisezeit.html">Reisezeit</a>
-    <a href="regenzeit.html">Regenzeit</a>
-    <a href="migration.html">Migration</a>
   </nav>
 
   <main>
@@ -121,7 +136,7 @@
       <img class="card-img"
         src="https://a0.muscache.com/im/pictures/hosting/Hosting-548139208810754740/original/c0e1b3b2-d9e6-449e-ac3c-0b5f2c5fb3e7.jpeg?im_w=960"
         alt="Mara Explorers Camp"
-        onerror="this.src='https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=960&q=80'">
+        onerror="this.src='https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NTQ4MTM5MjA4ODEwNzU0NzQw/original/376fb021-9b29-48af-af9e-aa002a736977.jpeg?im_w=960'">
       <div class="card-body">
         <h2>Mara Explorers Camp &#11088;</h2>
         <h3>Persönlicher Kontakt: Moses &amp; Laura</h3>
@@ -161,6 +176,10 @@
     </div>
 
     <div class="card">
+      <img class="card-img"
+        src="https://mara-siria-camp.com/wp-content/uploads/2025/02/Camp2.jpg"
+        alt="Mara Siria Tented Camp"
+        onerror="this.src='https://mara-siria-camp.com/wp-content/uploads/2026/07/Camp-intro-thumbnail-1.webp'">
       <div class="card-body">
         <h2>Mara Siria Tented Camp</h2>
         <h3>Persönlicher Kontakt verfügbar</h3>
@@ -176,24 +195,28 @@
           <tr><td>Ground-Paket</td><td>+ Airstrip-Transfers, 2 Game Drives/Tag</td><td>auf Anfrage</td></tr>
           <tr><td>Road-Package</td><td>Transfer ab Nairobi (Gruppenminibus, 6 Pax), 3T/2N</td><td>~208 €/P</td></tr>
         </table>
+
+        <div class="btn-row">
+          <a class="btn btn-ghost" href="https://mara-siria-camp.com/de/" target="_blank">Website</a>
+        </div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-body">
-        <h2>Variante 3: Selbstfahrt</h2>
-        <p>Anreise Nairobi → Mara: ~5–6 Std. Fahrt, 4x4-Mietwagen erforderlich. Maximale Flexibilität, günstigste Option – aber zeitaufwändig, Navigation im Park anspruchsvoll.</p>
+        <h2>Warum keine Selbstfahrt?</h2>
+        <p>Eine Eigenanreise mit Mietwagen in die Massai Mara wurde auf Grundlage der Expertenmeinung (Kontakt vor Ort, November 2026) ausgeschlossen: Polizeikontrollen können ohne Kenia-Erfahrung sehr teuer werden, und die Navigation im Park ist für Unkundige gefährlich. Empfohlen wird entweder der Shuttle des Camps oder ein Inlandsflug.</p>
       </div>
     </div>
 
     <h3>Vergleich Mara-Unterkünfte</h3>
     <table>
-      <tr><th></th><th>Selbstfahrt</th><th>Mara Explorers</th><th>Mara Siria</th></tr>
-      <tr><td>Kosten</td><td>Günstig</td><td>Mittel-Hoch</td><td>Hoch</td></tr>
-      <tr><td>Aufwand</td><td>Hoch</td><td>Niedrig</td><td>Sehr niedrig</td></tr>
-      <tr><td>Safari-Qualität</td><td>Eigenverantwortung</td><td>Sehr gut (eigener Jeep)</td><td>Sehr gut</td></tr>
-      <tr><td>Persönl. Kontakt</td><td>Nein</td><td>Ja (Moses &amp; Laura)</td><td>Ja</td></tr>
-      <tr><td>Transfer Nairobi</td><td>Selbst</td><td>Selbst, oder Flug</td><td>Buchbar</td></tr>
+      <tr><th></th><th>Mara Explorers &#11088;</th><th>Mara Siria</th></tr>
+      <tr><td>Kosten (4P, 2N, 2 Game Drives)</td><td>Unter 2.000 € (1.575 € via Airbnb)</td><td>~3.000 € (mit Kontakt) / ~4.000 € (ohne)</td></tr>
+      <tr><td>Aufwand Buchung</td><td>Niedrig</td><td>Sehr niedrig</td></tr>
+      <tr><td>Safari-Qualität</td><td>Sehr gut (eigener Jeep)</td><td>Sehr gut</td></tr>
+      <tr><td>Persönl. Kontakt</td><td>Ja (Moses &amp; Laura)</td><td>Ja (Peter via Bruder)</td></tr>
+      <tr><td>Transfer Nairobi</td><td>Shuttle ~150 €/Strecke oder Inlandsflug</td><td>Buchbar im Paket</td></tr>
     </table>
 
     <!-- ═══════════════════════════════════ LAKE NAIVASHA ═══════════════════════════════ -->
@@ -205,7 +228,7 @@
       <img class="card-img"
         src="https://a0.muscache.com/im/pictures/miso/Hosting-52229925/original/c0e1b3b2-3e2a-4b10-ab94-0f2c5fb3e7a1.jpeg?im_w=960"
         alt="Fish Eagle Cottage Crescent Island"
-        onerror="this.src='https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?w=960&q=80'">
+        onerror="this.src='https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NTIyMjk5MjU%3D/original/812d7d11-dbf7-47b9-9f40-f03f106953bd.png?im_w=960'">
       <div class="card-body">
         <h2>Fish Eagle Cottage &mdash; Crescent Island</h2>
         <p>Direkt auf der Insel gelegen, mitten im Wildschutzgebiet. 2 Schlafzimmer, 3 Betten, 1 Bad.</p>
@@ -252,6 +275,7 @@
     <p class="section-label" id="kueste">Küste &mdash; Watamu</p>
     <h2>Küste: Watamu</h2>
     <p>Ca. 120 km nördlich von Mombasa. Klein, ruhig, Korallenriff-Nationalpark – hervorragend zum Tauchen und Schnorcheln. Rückflug von Malindi (15 km entfernt).</p>
+    <p>Auf Airbnb gibt es jede Menge tolle Unterkünfte in Watamu. Das Njera Haus unten ist das, in dem wir schon einmal waren.</p>
 
     <div class="note" style="background:#f0f7ee;border-color:#2d5a27;">
       <strong>Experteneinschätzung (Kontakt vor Ort, November 2026):</strong> <strong>Definitiv Watamu</strong> empfohlen. Rückflug von <strong>Malindi</strong> nach Nairobi möglich (nur 15 km entfernt). Realistischer Preisrahmen für ein Haus: <strong>750–1.500 €</strong> für 3–4 Nächte, je nach Ausstattung.
@@ -261,7 +285,7 @@
       <img class="card-img"
         src="https://a0.muscache.com/im/pictures/miso/Hosting-39127675/original/c0e1b3b2-0b5f-4b10-ab94-0f2c5fb3e7a1.jpeg?im_w=960"
         alt="Njera Haus Watamu"
-        onerror="this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=960&q=80'">
+        onerror="this.src='https://a0.muscache.com/im/pictures/281e8320-7791-442d-a2ac-7102de7e8a89.jpg?im_w=960'">
       <div class="card-body">
         <h2>Njera Haus &mdash; Watamu</h2>
         <p>Drei Schlafzimmer mit privatem Pool und direkter Strandlage am Indischen Ozean. Ideal für vier Personen.</p>
@@ -286,18 +310,12 @@
 
         <div class="btn-row">
           <a class="btn btn-ghost" href="https://www.airbnb.de/rooms/39127675" target="_blank">Airbnb-Listing</a>
+          <a class="btn btn-ghost" href="https://njerahouse.com/" target="_blank">Website</a>
         </div>
       </div>
     </div>
 
     <!-- ═══════════════════════════════════ OFFENE FRAGEN ════════════════════════════════ -->
-    <p class="section-label">Offene Fragen</p>
-    <ul class="todo-list">
-      <li>Mara Explorers oder Mara Siria? (oder Selbstfahrt?)</li>
-      <li>Wie viele Nächte in der Mara? (min. 2 empfohlen für 2 Game Drives)</li>
-      <li>Küste: Watamu – Njera Haus Preise direkt in Airbnb prüfen (ID: 39127675)</li>
-    </ul>
-
     <p style="font-size:0.82rem;color:#aaa;margin-top:1rem;">Quelle: Perplexity-Recherche, Airbnb-Recherche November 2026. Preise: 1 USD = 0,91 €, 1 EUR = 144 KES.</p>
 
   </main>
@@ -306,6 +324,15 @@
   <script>
     document.querySelector('.nav-toggle').addEventListener('click', function() {
       this.closest('nav').classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-group > a').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var nav = this.closest('nav');
+        if (nav.classList.contains('open')) {
+          e.preventDefault();
+          this.closest('.nav-group').classList.toggle('sub-open');
+        }
+      });
     });
   </script>
 

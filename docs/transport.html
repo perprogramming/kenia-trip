@@ -13,6 +13,13 @@
     nav { background: #1e3d1a; padding: 0.6rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.2rem 1.2rem; justify-content: center; }
     nav a { color: #c8dfc5; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
     nav a:hover, nav a.active { color: #fff; border-color: #7cb874; }
+    /* ── Dropdown ── */
+    .nav-group { position: relative; display: flex; align-items: center; }
+    .nav-group > a { cursor: pointer; }
+    .nav-group > a::after { content: " ▾"; font-size: 0.7rem; opacity: 0.7; }
+    .subnav { display: none; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: #1a3517; border: 1px solid rgba(200,223,197,0.2); border-radius: 6px; min-width: 150px; z-index: 100; padding: 0.3rem 0; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    .subnav a { display: block; width: 100%; padding: 0.5rem 1rem; border-bottom: none; white-space: nowrap; }
+    .nav-group:hover .subnav { display: block; }
     main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
     .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: #7cb874; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e0d9ce; }
     h2 { font-size: 1.5rem; color: #1e3d1a; margin-bottom: 0.4rem; }
@@ -79,6 +86,10 @@
       }
       nav a:last-child { border-bottom: none; }
       nav.open a { display: block; }
+      nav.open .nav-group { display: block; width: 100%; }
+      nav.open .subnav { display: none; position: static; transform: none; box-shadow: none; border-radius: 0; background: #152c12; padding: 0; min-width: auto; }
+      nav.open .nav-group.sub-open .subnav { display: block; }
+      nav.open .subnav a { padding: 0.6rem 1.5rem; font-size: 0.88rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
       nav.open { flex-wrap: wrap; padding-top: 3rem; }
 
       main { padding: 0 1rem; }
@@ -91,19 +102,23 @@
 
   <header>
     <h1>Transport</h1>
-    <p>Nairobi &rarr; Mara &middot; Nairobi &rarr; Küste &middot; Inlandsflüge &middot; SGR-Zug</p>
+    <p>Nairobi &rarr; Mara &middot; Nairobi &rarr; Naivasha &middot; Nairobi &rarr; Küste &middot; Inlandsflüge &middot; SGR-Zug</p>
   </header>
 
   <nav>
     <button class="nav-toggle" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
     <a href="index.html">Übersicht</a>
+    <div class="nav-group">
+      <a href="reisezeit.html">Reisezeit</a>
+      <div class="subnav">
+        <a href="regenzeit.html">Regenzeiten</a>
+        <a href="migration.html">Migration</a>
+      </div>
+    </div>
     <a href="route.html">Route</a>
     <a href="unterkunft.html">Unterkunft</a>
     <a href="transport.html" class="active">Transport</a>
     <a href="budget.html">Budget</a>
-    <a href="reisezeit.html">Reisezeit</a>
-    <a href="regenzeit.html">Regenzeit</a>
-    <a href="migration.html">Migration</a>
   </nav>
 
   <main>
@@ -148,6 +163,19 @@
       <tr><td>Inlandsflug (SafariLink/AirKenya)</td><td>1.275–1.820 €</td><td>45–75 Min.</td><td>✓ Schnellste Option</td></tr>
     </table>
 
+    <!-- ═══ NAIVASHA ══════════════════════════════════════════════════════════════════════ -->
+    <p class="section-label">Nairobi → Lake Naivasha</p>
+    <h2>Nairobi &rarr; Lake Naivasha</h2>
+    <p>Ca. 90 km, ~1,5–2 Std. Fahrt. Gut erreichbar – kein 4x4 nötig. Bruder hat Fahrerkontakt: ca. <strong>75 € pro Strecke</strong> für die Gruppe (Minivan). Matatu (Minibus) ab Nairobi möglich, aber weniger komfortabel.</p>
+
+    <div class="tag-row">
+      <span class="tag">~90 km</span>
+      <span class="tag">~1,5–2 Std.</span>
+      <span class="tag">Kein 4x4 nötig</span>
+      <span class="tag">Gut ausgebaute Straße</span>
+      <span class="tag">Fahrer-Kontakt via Bruder: ~75 €</span>
+    </div>
+
     <!-- ═══ NAIROBI → KÜSTE ══════════════════════════════════════════════════════════════ -->
     <p class="section-label">Nairobi → Küste</p>
     <h2>Nairobi &rarr; Küste (Watamu)</h2>
@@ -191,26 +219,6 @@
       <strong>Kombinationsempfehlung:</strong> Hin Zug (ca. 130–155 € gesamt für 4 Pax inkl. Taxi) + zurück Flug von Malindi (~200–400 € bei Frühbuchung). Gesamtkosten deutlich günstiger als Hin+Rück Flug.
     </div>
 
-    <!-- ═══ NAIVASHA ══════════════════════════════════════════════════════════════════════ -->
-    <p class="section-label">Nairobi → Lake Naivasha</p>
-    <h2>Nairobi &rarr; Lake Naivasha</h2>
-    <p>Ca. 90 km, ~1,5–2 Std. Fahrt. Gut erreichbar – kein 4x4 nötig. Bruder hat Fahrerkontakt: ca. <strong>75 € pro Strecke</strong> für die Gruppe (Minivan). Matatu (Minibus) ab Nairobi möglich, aber weniger komfortabel.</p>
-
-    <div class="tag-row">
-      <span class="tag">~90 km</span>
-      <span class="tag">~1,5–2 Std.</span>
-      <span class="tag">Kein 4x4 nötig</span>
-      <span class="tag">Gut ausgebaute Straße</span>
-      <span class="tag">Fahrer-Kontakt via Bruder: ~75 €</span>
-    </div>
-
-    <p class="section-label">Offene Fragen</p>
-    <ul class="todo-list">
-      <li>Mara-Anreise: Inlandsflug (1.275–1.820 €) oder Shuttle Mara Explorers (~300 €)?</li>
-      <li>Küste: Zug hin + Flug zurück von Malindi (Expertenempfehlung) oder Hin+Rück Flug?</li>
-      <li>Naivasha: Fahrer über Bruder (~75 €/Strecke) oder eigener Mietwagen?</li>
-    </ul>
-
     <p style="font-size:0.82rem;color:#aaa;margin-top:1rem;">Quelle: Perplexity-Recherche, November 2026. Preise: 1 USD = 0,91 €.</p>
 
   </main>
@@ -219,6 +227,15 @@
   <script>
     document.querySelector('.nav-toggle').addEventListener('click', function() {
       this.closest('nav').classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-group > a').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var nav = this.closest('nav');
+        if (nav.classList.contains('open')) {
+          e.preventDefault();
+          this.closest('.nav-group').classList.toggle('sub-open');
+        }
+      });
     });
   </script>
 
