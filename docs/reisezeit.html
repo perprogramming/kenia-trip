@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reisezeit – Kenia 2027</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; background: #faf7f2; color: #2c2c2c; line-height: 1.7; }
+    header { background: #2d5a27; color: #fff; text-align: center; padding: 2.5rem 1.5rem; }
+    header h1 { font-size: 2.2rem; }
+    header p { opacity: 0.85; margin-top: 0.3rem; }
+    nav { background: #1e3d1a; padding: 0.6rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.2rem 1.2rem; justify-content: center; }
+    nav a { color: #c8dfc5; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    nav a:hover, nav a.active { color: #fff; border-color: #7cb874; }
+    main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: #7cb874; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e0d9ce; }
+    h2 { font-size: 1.5rem; color: #1e3d1a; margin-bottom: 0.4rem; }
+    h3 { font-size: 1.1rem; color: #2d5a27; margin: 1.5rem 0 0.5rem; }
+    p { color: #444; margin-bottom: 0.8rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 2rem; font-size: 0.92rem; }
+    th { background: #2d5a27; color: #fff; padding: 0.5rem 0.8rem; text-align: left; }
+    td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #e0d9ce; vertical-align: top; }
+    tr:nth-child(even) td { background: #f9f6f0; }
+    .option-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1rem 0 2rem; }
+    .oc { background: #fff; border: 1px solid #e0d9ce; border-radius: 10px; overflow: hidden; }
+    .oc-header { padding: 1rem 1.4rem; }
+    .oc-header.ostern { background: #e8f4e5; border-bottom: 3px solid #2d5a27; }
+    .oc-header.herbst { background: #fff3cd; border-bottom: 3px solid #d4a800; }
+    .oc-header h2 { font-size: 1.05rem; margin-bottom: 0.2rem; }
+    .oc-header .datum { font-size: 0.85rem; color: #666; }
+    .oc-body { padding: 1.2rem 1.4rem; }
+    .pro-con { font-size: 0.9rem; }
+    .pro-con .pro { color: #2d7a27; margin-bottom: 0.3rem; display: block; }
+    .pro-con .con { color: #c0392b; margin-bottom: 0.3rem; display: block; }
+    .note { background: #f0f7ee; border-left: 4px solid #2d5a27; border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; font-size: 0.9rem; color: #2c4a28; margin: 0 0 2rem; }
+    .todo-list { list-style: none; padding: 0; margin: 0.5rem 0 1.5rem; }
+    .todo-list li { padding: 0.35rem 0; color: #555; font-size: 0.92rem; }
+    .todo-list li::before { content: "☐ "; color: #7cb874; }
+    footer { text-align: center; padding: 2rem; font-size: 0.82rem; color: #aaa; border-top: 1px solid #e0d9ce; margin-top: 2rem; }
+    /* ── Mobile Nav ── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #c8dfc5;
+      margin: 5px 0;
+      transition: all 0.25s;
+    }
+    nav { position: relative; }
+
+    @media (max-width: 700px) {
+      .option-compare { grid-template-columns: 1fr; }
+
+      nav {
+        padding: 0.5rem 1rem;
+        justify-content: flex-start;
+        min-height: 42px;
+        align-items: center;
+      }
+      .nav-toggle { display: block; }
+      nav a {
+        display: none;
+        width: 100%;
+        padding: 0.7rem 0.5rem;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      nav a:last-child { border-bottom: none; }
+      nav.open a { display: block; }
+      nav.open { flex-wrap: wrap; padding-top: 3rem; }
+
+      main { padding: 0 1rem; }
+      table { font-size: 0.82rem; }
+      td, th { padding: 0.4rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Reisezeit</h1>
+    <p>Osterferien vs. Herbstferien &mdash; was spricht wofür?</p>
+  </header>
+
+  <nav>
+    <button class="nav-toggle" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+    <a href="index.html">Übersicht</a>
+    <a href="route.html">Route</a>
+    <a href="unterkunft.html">Unterkunft</a>
+    <a href="transport.html">Transport</a>
+    <a href="budget.html">Budget</a>
+    <a href="reisezeit.html" class="active">Reisezeit</a>
+    <a href="regenzeit.html">Regenzeit</a>
+    <a href="migration.html">Migration</a>
+  </nav>
+
+  <main>
+
+    <p class="section-label">Die zwei Optionen</p>
+
+    <div class="option-compare">
+      <div class="oc">
+        <div class="oc-header ostern">
+          <h2>Option A: Osterferien NRW</h2>
+          <div class="datum">22. März – 3. April 2027 &nbsp;|&nbsp; 12 Nächte</div>
+        </div>
+        <div class="oc-body">
+          <p>Kenia-Saison: <strong>Lange Regenzeit</strong> (März–Mai)</p>
+          <div class="pro-con">
+            <span class="pro">✓ Günstigere Flüge (514–780 €/P)</span>
+            <span class="pro">✓ Weniger Touristen</span>
+            <span class="pro">✓ Grüne Landschaft</span>
+            <span class="pro">✓ Mara Explorers ausgebucht (aber: günstigerer Camp-Tarif möglich)</span>
+            <span class="con">✗ Regenzeit in der Mara: Wege können matschig sein</span>
+            <span class="con">✗ Keine Große Migration in Kenia</span>
+            <span class="con">✗ Wolken können Ausblick einschränken</span>
+            <span class="con">✗ Mara Explorers für diese Zeit ausgebucht</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="oc">
+        <div class="oc-header herbst">
+          <h2>Option B: Herbstferien NRW</h2>
+          <div class="datum">23. Oktober – 6. November 2027 &nbsp;|&nbsp; 14 Nächte</div>
+        </div>
+        <div class="oc-body">
+          <p>Kenia-Saison: <strong>Ende Trockenzeit / Übergang</strong></p>
+          <div class="pro-con">
+            <span class="pro">✓ Trockenere Bedingungen in der Mara</span>
+            <span class="pro">✓ Gute Tiersichtungen (letztes Aufgebot der Migration)</span>
+            <span class="pro">✓ November günstigere Flüge (483–550 €/P)</span>
+            <span class="pro">✓ Mehr Zeit (14 Nächte vs. 12)</span>
+            <span class="pro">✓ Mara Explorers für Herbst buchbar (1.575 € Gesamt)</span>
+            <span class="con">✗ Oktober-Flüge deutlich teurer (ab 1.059 €/P)</span>
+            <span class="con">✗ Kurze Regenzeit beginnt Oktober/November</span>
+            <span class="con">✗ Reise geht über NRW-Ferien hinaus</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-label">Direktvergleich</p>
+    <table>
+      <tr><th>Kriterium</th><th>Osterferien (März)</th><th>Herbstferien (Okt./Nov.)</th></tr>
+      <tr><td>Zeitraum</td><td>22.03.–03.04.2027</td><td>23.10.–06.11.2027</td></tr>
+      <tr><td>Nächte</td><td>12</td><td>14</td></tr>
+      <tr><td>Flugpreis p.P.</td><td>~514–780 €</td><td>~483–550 € (Nov.) / ab 1.059 € (Okt.)</td></tr>
+      <tr><td>Kenia-Saison Mara</td><td>Lange Regenzeit</td><td>Ende Trockenzeit / Kurzregen beginnt</td></tr>
+      <tr><td>Wetter</td><td>Bewölkt, Regen möglich</td><td>Trockener, aber Kurzregen nicht ausgeschlossen</td></tr>
+      <tr><td>Tierbeobachtung</td><td>Gut (aber Mara matschig)</td><td>Sehr gut</td></tr>
+      <tr><td>Große Migration</td><td>Nein (Herden in Serengeti)</td><td>Nein (Herden ziehen nach Süden)</td></tr>
+      <tr><td>Mara Explorers</td><td>Ausgebucht</td><td>Buchbar (1.575 € Gesamt)</td></tr>
+      <tr><td>Crescent Island</td><td>Ausgebucht/nicht verfügbar</td><td>Verfügbar (665 € Gesamt, 3 N.)</td></tr>
+      <tr><td>Touristen</td><td>Weniger</td><td>Mehr (Hochsaison endet)</td></tr>
+    </table>
+
+    <div class="note">
+      <strong>Tendenz aus Recherche:</strong> Herbstferien bieten bessere Bedingungen für Safari und Strand, leicht höhere Kosten (wenn Oktober). November-Flüge sind aber günstig, und die Unterkünfte sind für Herbst verfügbar. Osterferien sind günstiger, aber wettertechnisch ungünstiger für Safari.
+    </div>
+
+    <p class="section-label">Wichtige Termine</p>
+    <table>
+      <tr><th>Datum</th><th>Bedeutung</th></tr>
+      <tr><td>22. März – 3. April 2027</td><td>Osterferien NRW</td></tr>
+      <tr><td>23. Oktober – 6. November 2027</td><td>Herbstferien NRW</td></tr>
+      <tr><td>März–Mai</td><td>Lange Regenzeit (Masika) Kenia</td></tr>
+      <tr><td>Oktober–November</td><td>Kurze Regenzeit (Vuli) Kenia</td></tr>
+      <tr><td>August–September</td><td>Peak der Großen Migration (nicht unsere Reisezeit)</td></tr>
+    </table>
+
+    <p class="section-label">Offene Fragen</p>
+    <ul class="todo-list">
+      <li>Entscheidung: Osterferien oder Herbstferien?</li>
+    </ul>
+
+    <p style="font-size:0.82rem;color:#aaa;margin-top:1rem;">Weitere Details: <a href="regenzeit.html" style="color:#2d5a27;">Regenzeiten</a> &nbsp;|&nbsp; <a href="migration.html" style="color:#2d5a27;">Migration</a>. Stand: November 2026</p>
+
+  </main>
+
+  <footer>&copy; 2026 &ndash; Kenia-Reiseplanung &nbsp;|&nbsp; Stand: November 2026</footer>
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      this.closest('nav').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

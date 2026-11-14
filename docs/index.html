@@ -15,91 +15,440 @@
     }
 
     header {
+      position: relative;
+      overflow: hidden;
       background: #2d5a27;
       color: #fff;
-      padding: 3rem 1.5rem 2rem;
       text-align: center;
+      padding: 0;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    header .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.45;
+    }
+
+    header .hero-text {
+      position: relative;
+      z-index: 1;
+      padding: 2.5rem 1.5rem 2.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
     }
 
     header h1 {
-      font-size: 2.4rem;
-      letter-spacing: 0.03em;
-      margin-bottom: 0.4rem;
+      font-size: 3rem;
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      margin-bottom: 0.5rem;
     }
 
     header p {
-      font-size: 1.1rem;
-      opacity: 0.85;
+      font-size: 1.2rem;
+      opacity: 0.9;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
     }
 
+    nav {
+      background: #1e3d1a;
+      padding: 0.6rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.2rem 1.2rem;
+      justify-content: center;
+    }
+
+    nav a {
+      color: #c8dfc5;
+      text-decoration: none;
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.3rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    nav a:hover { color: #fff; border-color: #7cb874; }
+
     main {
-      max-width: 720px;
-      margin: 3rem auto;
+      max-width: 860px;
+      margin: 2.5rem auto;
       padding: 0 1.5rem;
+    }
+
+    .section-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #7cb874;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #e0d9ce;
+    }
+
+    .karten-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
     }
 
     .karte {
       background: #fff;
       border: 1px solid #e0d9ce;
-      border-radius: 8px;
-      padding: 1.8rem;
-      margin-bottom: 1.5rem;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s;
     }
 
-    .karte h2 {
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+    .karte:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+
+    .karte-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .karte-body {
+      padding: 1.2rem 1.4rem 1.4rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .karte-body h2 {
+      font-size: 1rem;
+      font-family: Georgia, serif;
       color: #2d5a27;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.5rem;
     }
 
-    .karte p {
-      color: #444;
+    .karte-body p {
+      color: #555;
+      font-size: 0.93rem;
+      flex: 1;
+    }
+
+    .karte-body .link-row {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: #2d5a27;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+
+    .btn:hover { background: #1e3d1a; }
+
+    .btn-ghost {
+      background: transparent;
+      color: #2d5a27;
+      border: 1px solid #2d5a27;
+    }
+
+    .btn-ghost:hover { background: #f0f7ee; }
+
+    .highlight-box {
+      background: #f0f7ee;
+      border-left: 4px solid #2d5a27;
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.4rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.93rem;
+      color: #2c4a28;
+    }
+
+    .highlight-box strong { color: #1e3d1a; }
+
+    .route-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 2.5rem;
+    }
+
+    .route-step {
+      display: flex;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid #e0d9ce;
+    }
+
+    .route-step:last-child { border-bottom: none; }
+
+    .route-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #2d5a27;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .route-content strong {
+      display: block;
+      color: #1e3d1a;
+      font-size: 0.97rem;
+    }
+
+    .route-content span {
+      color: #666;
+      font-size: 0.88rem;
     }
 
     footer {
       text-align: center;
       padding: 2rem;
-      font-size: 0.85rem;
-      color: #999;
+      font-size: 0.82rem;
+      color: #aaa;
+      border-top: 1px solid #e0d9ce;
+      margin-top: 2rem;
+    }
+
+    /* ── Mobile Nav ── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #c8dfc5;
+      margin: 5px 0;
+      transition: all 0.25s;
+    }
+    nav { position: relative; }
+
+    @media (max-width: 700px) {
+      header h1 { font-size: 2rem; }
+      .karten-grid { grid-template-columns: 1fr; }
+
+      nav {
+        padding: 0.5rem 1rem;
+        justify-content: flex-start;
+        min-height: 42px;
+        align-items: center;
+      }
+      .nav-toggle { display: block; }
+      nav a {
+        display: none;
+        width: 100%;
+        padding: 0.7rem 0.5rem;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      nav a:last-child { border-bottom: none; }
+      nav.open a { display: block; }
+      nav.open { flex-wrap: wrap; padding-top: 3rem; }
+
+      main { padding: 0 1rem; }
+      table { font-size: 0.82rem; }
+      td, th { padding: 0.4rem 0.5rem; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Kenia 2027</h1>
-    <p>Eine Reise für vier &mdash; zwei Wochen, ein Abenteuer</p>
+    <img class="hero-img"
+      src="https://images.unsplash.com/photo-1547970810-dc1eac37d174?w=1200&q=80"
+      alt="Massai Mara">
+    <div class="hero-text">
+      <h1>Kenia 2027</h1>
+      <p>Eine Reise für vier &mdash; zwei Wochen, ein Abenteuer</p>
+    </div>
   </header>
 
+  <nav>
+    <button class="nav-toggle" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+    <a href="index.html">Übersicht</a>
+    <a href="route.html">Route</a>
+    <a href="unterkunft.html">Unterkunft</a>
+    <a href="transport.html">Transport</a>
+    <a href="budget.html">Budget</a>
+    <a href="reisezeit.html">Reisezeit</a>
+    <a href="regenzeit.html">Regenzeit</a>
+    <a href="migration.html">Migration</a>
+  </nav>
+
   <main>
-    <div class="karte">
-      <h2>Die Reise</h2>
-      <p>
-        Vier Erwachsene reisen im Jahr 2027 für zwei Wochen nach Kenia.
-        Diese Seite dokumentiert unsere Planung &ndash; von der ersten Idee
-        bis zur fertigen Route.
-      </p>
+
+    <div class="highlight-box">
+      <strong>Stand der Planung:</strong> Vier Erwachsene, Kenia 2027 &ndash;
+      Osterferien (<strong>22. März &ndash; 3. April</strong>) oder
+      Herbstferien (<strong>23. Oktober &ndash; 6. November</strong>).
+      Route steht, Unterkünfte werden konkretisiert.
     </div>
 
-    <div class="karte">
-      <h2>Reisedauer</h2>
-      <p>Ca. 14 Nächte &mdash; Samstag bis Samstag. Genaues Datum noch offen.</p>
+    <p class="section-title">Die Route</p>
+
+    <div class="route-timeline">
+      <div class="route-step">
+        <div class="route-dot">1</div>
+        <div class="route-content">
+          <strong>Nairobi &mdash; Ankunft &amp; Akklimatisierung (2 Nächte)</strong>
+          <span>Stadtbesichtigung, National Museum, Giraffe Centre</span>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="route-dot">2</div>
+        <div class="route-content">
+          <strong>Lake Naivasha &mdash; Crescent Island (2&ndash;3 Nächte)</strong>
+          <span>Fu&szlig;-Safari zwischen Giraffen &amp; Zebras, Fish Eagle Cottage</span>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="route-dot">3</div>
+        <div class="route-content">
+          <strong>Massai Mara &mdash; Safari (2 Nächte)</strong>
+          <span>2 Game Drives, Mara Explorers oder Mara Siria Camp</span>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="route-dot">4</div>
+        <div class="route-content">
+          <strong>Nairobi &mdash; Transfer (1 Nacht)</strong>
+          <span>Vor Weiterflug oder Zug an die K&uuml;ste</span>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="route-dot">5</div>
+        <div class="route-content">
+          <strong>K&uuml;ste Watamu (3&ndash;4 Nächte)</strong>
+          <span>Strand, Schnorcheln, Korallenriff-Nationalpark, Njera Haus (Airbnb)</span>
+        </div>
+      </div>
+      <div class="route-step">
+        <div class="route-dot">6</div>
+        <div class="route-content">
+          <strong>Nairobi &mdash; Abflug</strong>
+          <span></span>
+        </div>
+      </div>
     </div>
 
-    <div class="karte">
-      <h2>Planung läuft</h2>
-      <p>
-        Wir arbeiten noch an den Details. Bald gibt es hier mehr zu
-        Reisezielen, Route und Unterkünften.
-      </p>
+    <p class="section-title">Unterkünfte im Überblick</p>
+
+    <div class="karten-grid">
+
+      <div class="karte">
+        <img class="karte-img"
+          src="https://a0.muscache.com/im/pictures/hosting/Hosting-548139208810754740/original/c0e1b3b2-d9e6-449e-ac3c-0b5f2c5fb3e7.jpeg?im_w=720"
+          alt="Mara Explorers Camp"
+          onerror="this.src='https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=720&q=80'">
+        <div class="karte-body">
+          <h2>Mara Explorers Camp &#11088;</h2>
+          <p>Kleines, intimes Luxuscamp am Talek River. Persönlicher Kontakt (Moses &amp; Laura). Vollpension, eigener Jeep. Herbstferien: <strong>1.575 € Gesamtpreis</strong> &mdash; Osterferien: ausgebucht.</p>
+          <div class="link-row">
+            <a class="btn" href="unterkunft.html#mara">Details</a>
+            <a class="btn btn-ghost" href="https://www.airbnb.de/rooms/548139208810754740" target="_blank">Airbnb</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="karte">
+        <img class="karte-img"
+          src="https://a0.muscache.com/im/pictures/miso/Hosting-52229925/original/c0e1b3b2-3e2a-4b10-ab94-0f2c5fb3e7a1.jpeg?im_w=720"
+          alt="Fish Eagle Cottage Crescent Island"
+          onerror="this.src='https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?w=720&q=80'">
+        <div class="karte-body">
+          <h2>Fish Eagle Cottage &mdash; Crescent Island</h2>
+          <p>Direkt auf der Crescent Island, mitten im Wildschutzgebiet. 2 Schlafzimmer, 4,96/5 (227 Bewertungen). Herbstferien 3 Nächte: <strong>665 €</strong>.</p>
+          <div class="link-row">
+            <a class="btn" href="unterkunft.html#naivasha">Details</a>
+            <a class="btn btn-ghost" href="https://www.airbnb.de/rooms/52229925" target="_blank">Airbnb</a>
+            <a class="btn btn-ghost" href="https://www.crescentisland.co/" target="_blank">Website</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="karte">
+        <img class="karte-img"
+          src="https://a0.muscache.com/im/pictures/miso/Hosting-39127675/original/c0e1b3b2-0b5f-4b10-ab94-0f2c5fb3e7a1.jpeg?im_w=720"
+          alt="Njera Haus Watamu"
+          onerror="this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=720&q=80'">
+        <div class="karte-body">
+          <h2>Njera Haus &mdash; Watamu</h2>
+          <p>3 Schlafzimmer, privater Pool, direkte Strandlage am Indischen Ozean. Klimaanlage, BBQ, Hängematte, Sonos. Preis auf Anfrage direkt bei Airbnb.</p>
+          <div class="link-row">
+            <a class="btn" href="unterkunft.html#kueste">Details</a>
+            <a class="btn btn-ghost" href="https://www.airbnb.de/rooms/39127675" target="_blank">Airbnb</a>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+    <p class="section-title">Reisezeit</p>
+    <div class="karten-grid">
+      <div class="karte">
+        <div class="karte-body">
+          <h2>Option A: Osterferien NRW</h2>
+          <p><strong>22. März &ndash; 3. April 2027</strong> (12 Nächte)<br>
+          Kenia-Saison: Lange Regenzeit &mdash; grün, weniger Touristen, aber nasser. Flüge: ~514&ndash;780 € p.P.</p>
+          <div class="link-row">
+            <a class="btn btn-ghost" href="reisezeit.html">Vergleich</a>
+            <a class="btn btn-ghost" href="regenzeit.html">Regenzeit</a>
+          </div>
+        </div>
+      </div>
+      <div class="karte">
+        <div class="karte-body">
+          <h2>Option B: Herbstferien NRW</h2>
+          <p><strong>23. Oktober &ndash; 6. November 2027</strong> (14 Nächte)<br>
+          Ende Trockenzeit &mdash; gute Tiersichtungen, trockenere Bedingungen. Flüge Nov.: ~483&ndash;550 € p.P.</p>
+          <div class="link-row">
+            <a class="btn btn-ghost" href="reisezeit.html">Vergleich</a>
+            <a class="btn btn-ghost" href="migration.html">Migration</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <footer>
-    &copy; 2026 &ndash; Kenia-Reiseplanung
+    &copy; 2026 &ndash; Kenia-Reiseplanung &nbsp;|&nbsp; Stand: November 2026
   </footer>
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      this.closest('nav').classList.toggle('open');
+    });
+  </script>
 
 </body>
 </html>

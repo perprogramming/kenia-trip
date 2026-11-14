@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Route – Kenia 2027</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; background: #faf7f2; color: #2c2c2c; line-height: 1.7; }
+    header { background: #2d5a27; color: #fff; text-align: center; padding: 2.5rem 1.5rem; }
+    header h1 { font-size: 2.2rem; }
+    header p { opacity: 0.85; margin-top: 0.3rem; }
+    nav { background: #1e3d1a; padding: 0.6rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.2rem 1.2rem; justify-content: center; }
+    nav a { color: #c8dfc5; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    nav a:hover, nav a.active { color: #fff; border-color: #7cb874; }
+    main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: #7cb874; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e0d9ce; }
+    h2 { font-size: 1.5rem; color: #1e3d1a; margin-bottom: 0.4rem; }
+    h3 { font-size: 1.1rem; color: #2d5a27; margin: 1.5rem 0 0.5rem; }
+    p { color: #444; margin-bottom: 0.8rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 2rem; font-size: 0.92rem; }
+    th { background: #2d5a27; color: #fff; padding: 0.5rem 0.8rem; text-align: left; }
+    td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #e0d9ce; vertical-align: top; }
+    tr:nth-child(even) td { background: #f9f6f0; }
+    .option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .option-card { background: #fff; border: 1px solid #e0d9ce; border-radius: 10px; overflow: hidden; }
+    .option-header { background: #2d5a27; color: #fff; padding: 1rem 1.4rem; }
+    .option-header h2 { color: #fff; font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .option-header .datum { font-size: 0.88rem; opacity: 0.85; }
+    .option-body { padding: 1.2rem 1.4rem; }
+    .timeline-item { display: flex; gap: 0.8rem; padding: 0.7rem 0; border-bottom: 1px solid #f0ebe2; }
+    .timeline-item:last-child { border-bottom: none; }
+    .tl-dot { width: 8px; height: 8px; border-radius: 50%; background: #7cb874; flex-shrink: 0; margin-top: 0.55rem; }
+    .tl-date { font-size: 0.8rem; color: #888; white-space: nowrap; width: 80px; flex-shrink: 0; }
+    .tl-place { font-size: 0.92rem; }
+    .tl-place strong { color: #1e3d1a; display: block; }
+    .tl-place span { color: #666; font-size: 0.85rem; }
+    .note { background: #f0f7ee; border-left: 4px solid #2d5a27; border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; font-size: 0.9rem; color: #2c4a28; margin: 1rem 0 2rem; }
+    .todo-list { list-style: none; padding: 0; margin: 0.5rem 0 1.5rem; }
+    .todo-list li { padding: 0.35rem 0; color: #555; font-size: 0.92rem; }
+    .todo-list li::before { content: "☐ "; color: #7cb874; }
+    footer { text-align: center; padding: 2rem; font-size: 0.82rem; color: #aaa; border-top: 1px solid #e0d9ce; margin-top: 2rem; }
+    /* ── Mobile Nav ── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #c8dfc5;
+      margin: 5px 0;
+      transition: all 0.25s;
+    }
+    nav { position: relative; }
+
+    @media (max-width: 700px) {
+      .option-grid { grid-template-columns: 1fr; }
+
+      nav {
+        padding: 0.5rem 1rem;
+        justify-content: flex-start;
+        min-height: 42px;
+        align-items: center;
+      }
+      .nav-toggle { display: block; }
+      nav a {
+        display: none;
+        width: 100%;
+        padding: 0.7rem 0.5rem;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      nav a:last-child { border-bottom: none; }
+      nav.open a { display: block; }
+      nav.open { flex-wrap: wrap; padding-top: 3rem; }
+
+      main { padding: 0 1rem; }
+      table { font-size: 0.82rem; }
+      td, th { padding: 0.4rem 0.5rem; }
+      .tl-date { width: 60px; font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Route &amp; Zeitleiste</h1>
+    <p>Nairobi &mdash; Lake Naivasha &mdash; Massai Mara &mdash; Küste</p>
+  </header>
+
+  <nav>
+    <button class="nav-toggle" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+    <a href="index.html">Übersicht</a>
+    <a href="route.html" class="active">Route</a>
+    <a href="unterkunft.html">Unterkunft</a>
+    <a href="transport.html">Transport</a>
+    <a href="budget.html">Budget</a>
+    <a href="reisezeit.html">Reisezeit</a>
+    <a href="regenzeit.html">Regenzeit</a>
+    <a href="migration.html">Migration</a>
+  </nav>
+
+  <main>
+
+    <p class="section-label">Die zwei Optionen</p>
+    <p>Vier Erwachsene, zwei Wochen (Samstag bis Samstag). Stationen: Nairobi – Lake Naivasha – Massai Mara – Nairobi – Küste – Nairobi.</p>
+
+    <div class="option-grid">
+      <div class="option-card">
+        <div class="option-header">
+          <h2>Option A: Osterferien</h2>
+          <div class="datum">Sa 22.03. – Sa 03.04.2027 &mdash; 12 Nächte</div>
+        </div>
+        <div class="option-body">
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Sa 22.03.</div>
+            <div class="tl-place"><strong>Nairobi (2 N)</strong><span>Ankunft, Giraffe Centre, National Museum (⚠️ kein Innenstadtbesuch)</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Mo 24.03.</div>
+            <div class="tl-place"><strong>Lake Naivasha (2 N)</strong><span>Crescent Island, Fuß-Safari</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Mi 26.03.</div>
+            <div class="tl-place"><strong>Massai Mara (2 N)</strong><span>2 Game Drives</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Fr 28.03.</div>
+            <div class="tl-place"><strong>Nairobi (1 N)</strong><span>Transfer vor Küstenflug/-zug</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Sa 29.03.</div>
+            <div class="tl-place"><strong>Watamu (4 N)</strong><span>Strand, Schnorcheln, Airbnb</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Mi 02.04.</div>
+            <div class="tl-place"><strong>Nairobi (1 N)</strong><span>Abflug Sa 03.04.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="option-card">
+        <div class="option-header">
+          <h2>Option B: Herbstferien</h2>
+          <div class="datum">Sa 25.10. – Sa 08.11.2027 &mdash; 14 Nächte</div>
+        </div>
+        <div class="option-body">
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Sa 25.10.</div>
+            <div class="tl-place"><strong>Nairobi (2 N)</strong><span>Ankunft, Giraffe Centre, National Museum (⚠️ kein Innenstadtbesuch)</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Mo 27.10.</div>
+            <div class="tl-place"><strong>Lake Naivasha (2 N)</strong><span>Crescent Island, Fuß-Safari</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Mi 29.10.</div>
+            <div class="tl-place"><strong>Massai Mara (2 N)</strong><span>2 Game Drives</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Fr 31.10.</div>
+            <div class="tl-place"><strong>Nairobi (1 N)</strong><span>Transfer vor Küstenflug/-zug</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Sa 01.11.</div>
+            <div class="tl-place"><strong>Watamu (4 N)</strong><span>Strand, Schnorcheln, Airbnb</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Mi 05.11.</div>
+            <div class="tl-place"><strong>Nairobi (3 N)</strong><span>Puffertage, Abflug Sa 08.11.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-label">Vergleich</p>
+    <table>
+      <tr><th></th><th>Osterferien</th><th>Herbstferien</th></tr>
+      <tr><td>Zeitraum</td><td>Sa 22.03. – Sa 03.04.2027</td><td>Sa 25.10. – Sa 08.11.2027</td></tr>
+      <tr><td>Nächte gesamt</td><td>12</td><td>14</td></tr>
+      <tr><td>Nairobi</td><td>3 (2 + 1)</td><td>6 (2 + 1 + 3)</td></tr>
+      <tr><td>Naivasha</td><td>2</td><td>2</td></tr>
+      <tr><td>Massai Mara</td><td>2</td><td>2</td></tr>
+      <tr><td>Küste</td><td>4</td><td>4</td></tr>
+      <tr><td>Kenia-Saison Mara</td><td>Lange Regenzeit</td><td>Ende Trockenzeit</td></tr>
+      <tr><td>Flugpreis p.P. (ca.)</td><td>514–780 €</td><td>483–550 € (Nov.)</td></tr>
+      <tr><td>Große Migration</td><td>Nein</td><td>Nein (Nov.)</td></tr>
+    </table>
+
+    <p class="section-label">Detailplan Option A: Osterferien</p>
+    <table>
+      <tr><th>Datum</th><th>Station</th><th>Nächte</th><th>Hinweis</th></tr>
+      <tr><td>Sa 22.03. – Mo 24.03.</td><td>Nairobi</td><td>2</td><td>Ankunft, Giraffe Centre, National Museum (⚠️ Innenstadt nicht empfohlen)</td></tr>
+      <tr><td>Mo 24.03. – Mi 26.03.</td><td>Lake Naivasha – Crescent Island</td><td>2</td><td>Fuß-Safari, Bootsfahrt, Airbnb auf/bei der Insel</td></tr>
+      <tr><td>Mi 26.03. – Fr 28.03.</td><td>Massai Mara</td><td>2</td><td>2 Game Drives; Mara Explorers oder Mara Siria</td></tr>
+      <tr><td>Fr 28.03. – Sa 29.03.</td><td>Nairobi</td><td>1</td><td>Transfer, Übernachtung vor Küstenflug/-zug</td></tr>
+      <tr><td>Sa 29.03. – Mi 02.04.</td><td>Küste (Watamu)</td><td>4</td><td>Strand, Schnorcheln, Airbnb</td></tr>
+      <tr><td>Mi 02.04. – Sa 03.04.</td><td>Nairobi</td><td>1</td><td>Abflug am Samstag</td></tr>
+    </table>
+
+    <div class="note">
+      <strong>Osterferien NRW:</strong> 22. März – 3. April 2027. Kenia-Saison: Lange Regenzeit beginnt – Mara kann grüner, aber nasser sein. Keine Große Migration in dieser Zeit.
+    </div>
+
+    <p class="section-label">Detailplan Option B: Herbstferien</p>
+    <table>
+      <tr><th>Datum</th><th>Station</th><th>Nächte</th><th>Hinweis</th></tr>
+      <tr><td>Sa 25.10. – Mo 27.10.</td><td>Nairobi</td><td>2</td><td>Ankunft, Giraffe Centre, National Museum (⚠️ Innenstadt nicht empfohlen)</td></tr>
+      <tr><td>Mo 27.10. – Mi 29.10.</td><td>Lake Naivasha – Crescent Island</td><td>2</td><td>Fuß-Safari, Bootsfahrt, Airbnb auf/bei der Insel</td></tr>
+      <tr><td>Mi 29.10. – Fr 31.10.</td><td>Massai Mara</td><td>2</td><td>2 Game Drives; Mara Explorers oder Mara Siria</td></tr>
+      <tr><td>Fr 31.10. – Sa 01.11.</td><td>Nairobi</td><td>1</td><td>Transfer, Übernachtung vor Küstenflug/-zug</td></tr>
+      <tr><td>Sa 01.11. – Mi 05.11.</td><td>Küste (Watamu)</td><td>4</td><td>Strand, Schnorcheln, Airbnb</td></tr>
+      <tr><td>Mi 05.11. – Sa 08.11.</td><td>Nairobi</td><td>3</td><td>Puffertage, Abflug am Samstag</td></tr>
+    </table>
+
+    <div class="note">
+      <strong>Herbstferien NRW:</strong> 23. Oktober – 6. November 2027 (Reise leicht über Ferienende hinaus). Kenia-Saison: Ende Trockenzeit / Übergang – gute Tiersichtungen, trockenere Bedingungen in der Mara.
+    </div>
+
+    <p class="section-label">Offene Fragen</p>
+    <ul class="todo-list">
+      <li>Entscheidung: Osterferien oder Herbstferien?</li>
+      <li>Nairobi-Programm: Giraffe Centre, National Museum, Karen Blixen Museum empfohlen – <strong>Innenstadt meiden</strong> (Experte: nicht sicher, überlaufen, nicht sauber)</li>
+      <li>Anreise Naivasha: Fahrer über Bruder (~75 €/Strecke) oder eigener Mietwagen?</li>
+      <li>Mara-Anreise: Inlandsflug oder Shuttle Mara Explorers (~150 €/Strecke)?</li>
+      <li>Küste: Watamu – Rückflug von Malindi (15 km entfernt)?</li>
+    </ul>
+
+    <p style="font-size:0.82rem;color:#aaa;margin-top:1rem;">Stand: November 2026</p>
+
+  </main>
+
+  <footer>&copy; 2026 &ndash; Kenia-Reiseplanung &nbsp;|&nbsp; Stand: November 2026</footer>
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      this.closest('nav').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

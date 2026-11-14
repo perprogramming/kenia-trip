@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Migration – Kenia 2027</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; background: #faf7f2; color: #2c2c2c; line-height: 1.7; }
+    header { background: #2d5a27; color: #fff; text-align: center; padding: 2.5rem 1.5rem; }
+    header h1 { font-size: 2.2rem; }
+    header p { opacity: 0.85; margin-top: 0.3rem; }
+    nav { background: #1e3d1a; padding: 0.6rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.2rem 1.2rem; justify-content: center; }
+    nav a { color: #c8dfc5; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    nav a:hover, nav a.active { color: #fff; border-color: #7cb874; }
+    main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: #7cb874; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e0d9ce; }
+    h2 { font-size: 1.5rem; color: #1e3d1a; margin-bottom: 0.4rem; }
+    h3 { font-size: 1.1rem; color: #2d5a27; margin: 1.5rem 0 0.5rem; }
+    p { color: #444; margin-bottom: 0.8rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 2rem; font-size: 0.92rem; }
+    th { background: #2d5a27; color: #fff; padding: 0.5rem 0.8rem; text-align: left; }
+    td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #e0d9ce; vertical-align: top; }
+    tr:nth-child(even) td { background: #f9f6f0; }
+    .mig-timeline { position: relative; margin: 1.5rem 0 2.5rem; }
+    .mig-bar { height: 44px; border-radius: 22px; display: flex; align-items: center; padding: 0 1rem; color: #fff; font-size: 0.85rem; font-weight: bold; margin-bottom: 0.5rem; position: relative; }
+    .mig-bar.peak { background: linear-gradient(to right, #1e3d1a, #2d5a27); }
+    .mig-bar.good { background: linear-gradient(to right, #2d5a27, #5a9e52); }
+    .mig-bar.low { background: linear-gradient(to right, #aaa, #ccc); color: #333; }
+    .mig-bar.none { background: #e0d9ce; color: #888; }
+    .mig-monat { display: grid; grid-template-columns: 50px 1fr; gap: 0.5rem; align-items: center; margin-bottom: 0.4rem; }
+    .mig-monat .label { font-size: 0.82rem; color: #666; text-align: right; }
+    .note { background: #f0f7ee; border-left: 4px solid #2d5a27; border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; font-size: 0.9rem; color: #2c4a28; margin: 0 0 2rem; }
+    .warn { background: #fff3cd; border-left: 4px solid #e6b800; border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; font-size: 0.9rem; color: #5a4a00; margin: 0 0 2rem; }
+    .stat { display: inline-block; background: #2d5a27; color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 1.1rem; font-weight: bold; margin: 0.3rem; }
+    footer { text-align: center; padding: 2rem; font-size: 0.82rem; color: #aaa; border-top: 1px solid #e0d9ce; margin-top: 2rem; }
+
+    /* ── Mobile Nav ── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #c8dfc5;
+      margin: 5px 0;
+      transition: all 0.25s;
+    }
+    nav { position: relative; }
+
+    @media (max-width: 700px) {
+      nav {
+        padding: 0.5rem 1rem;
+        justify-content: flex-start;
+        min-height: 42px;
+        align-items: center;
+      }
+      .nav-toggle { display: block; }
+      nav a {
+        display: none;
+        width: 100%;
+        padding: 0.7rem 0.5rem;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      nav a:last-child { border-bottom: none; }
+      nav.open a { display: block; }
+      nav.open { flex-wrap: wrap; padding-top: 3rem; }
+
+      main { padding: 0 1rem; }
+      table { font-size: 0.82rem; }
+      td, th { padding: 0.4rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Große Migration</h1>
+    <p>1,5 Millionen Gnus &mdash; das größte Tierspektakel der Welt</p>
+  </header>
+
+  <nav>
+    <button class="nav-toggle" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+    <a href="index.html">Übersicht</a>
+    <a href="route.html">Route</a>
+    <a href="unterkunft.html">Unterkunft</a>
+    <a href="transport.html">Transport</a>
+    <a href="budget.html">Budget</a>
+    <a href="reisezeit.html">Reisezeit</a>
+    <a href="regenzeit.html">Regenzeit</a>
+    <a href="migration.html" class="active">Migration</a>
+  </nav>
+
+  <main>
+
+    <p class="section-label">Das Spektakel</p>
+    <h2>Was ist die Große Migration?</h2>
+    <p>Jährlich wandern über <span class="stat">1,5 Mio. Gnus</span> sowie Hunderttausende von Zebras und Gazellen im Kreis – zwischen der Serengeti (Tansania) im Süden und der Massai Mara (Kenia) im Norden. Der Kreislauf folgt dem Regen und dem frischen Gras.</p>
+    <p>Die spektakulären <strong>Flussüberquerungen</strong> am Mara River (Gnus springen ins Krokodilwasser) sind das bekannteste Bild der Großen Migration.</p>
+
+    <p class="section-label">Migration nach Monaten</p>
+
+    <div class="mig-timeline">
+      <div class="mig-monat"><div class="label">Jan</div><div class="mig-bar none">Herden im südlichen Serengeti</div></div>
+      <div class="mig-monat"><div class="label">Feb</div><div class="mig-bar none">Kalbungszeit im Serengeti</div></div>
+      <div class="mig-monat"><div class="label">Mär</div><div class="mig-bar none">Beginn Nordwanderung</div></div>
+      <div class="mig-monat"><div class="label">Apr</div><div class="mig-bar none">Wanderung durch Serengeti</div></div>
+      <div class="mig-monat"><div class="label">Mai</div><div class="mig-bar low">Northward – nähert sich Kenia</div></div>
+      <div class="mig-monat"><div class="label">Jun</div><div class="mig-bar good">Ankunft in Kenia möglich (Mara Nordbereich)</div></div>
+      <div class="mig-monat"><div class="label">Jul</div><div class="mig-bar peak">Peak Mara – Flussüberquerungen beginnen &#11088;</div></div>
+      <div class="mig-monat"><div class="label">Aug</div><div class="mig-bar peak">Peak Massai Mara – Flussüberquerungen täglich &#11088;&#11088;</div></div>
+      <div class="mig-monat"><div class="label">Sep</div><div class="mig-bar peak">Peak endet – Herden beginnen Südwanderung &#11088;</div></div>
+      <div class="mig-monat"><div class="label">Okt</div><div class="mig-bar low">Ende – Herden verlassen Kenia nach Süden</div></div>
+      <div class="mig-monat"><div class="label">Nov</div><div class="mig-bar none">Herden im nördlichen Serengeti</div></div>
+      <div class="mig-monat"><div class="label">Dez</div><div class="mig-bar none">Herden im südlichen Serengeti</div></div>
+    </div>
+
+    <p class="section-label">Unsere Reisezeiten</p>
+    <h2>Migration: Was erwartet uns?</h2>
+
+    <table>
+      <tr><th>Reisezeit</th><th>Migrationsstatus</th><th>Chance auf Flussüberquerung</th><th>Bewertung</th></tr>
+      <tr>
+        <td><strong>Osterferien</strong><br>März/April 2027</td>
+        <td>Herden im südlichen Serengeti (Kalbungszeit). Keine Migration in Kenia.</td>
+        <td>0 % – Herden sind 1.500 km entfernt</td>
+        <td>⭐ (keine Migration)</td>
+      </tr>
+      <tr>
+        <td><strong>Herbstferien</strong><br>Oktober/November 2027</td>
+        <td>Herden verlassen Kenia Richtung Süden. Oktober: letzte Chance. November: meist schon weg.</td>
+        <td>Sehr gering – Oktober marginal besser als November</td>
+        <td>⭐⭐ (Ende der Saison)</td>
+      </tr>
+    </table>
+
+    <div class="warn">
+      <strong>Ehrliche Einschätzung:</strong> Weder Osterferien noch Herbstferien sind die richtigen Termine für die Große Migration. Der Peak ist Juli–September. Wir sollten nicht mit Flussüberquerungen rechnen – die Massai Mara bietet aber auch ohne Migration spektakuläre Wildtierbeobachtungen (Löwen, Elefanten, Geparde, Nashörner etc.).
+    </div>
+
+    <p class="section-label">Migration ohne Migration: Was sehen wir trotzdem?</p>
+    <h2>Massai Mara ohne Große Migration</h2>
+    <p>Auch ohne die GNU-Wanderung ist die Massai Mara eines der besten Wildtiergebiete Afrikas. Ganzjährig anzutreffen:</p>
+
+    <table>
+      <tr><th>Tierart</th><th>Sichtungschancen</th><th>Hinweis</th></tr>
+      <tr><td>Löwen</td><td>Sehr hoch</td><td>Ganzjährig</td></tr>
+      <tr><td>Elefanten</td><td>Sehr hoch</td><td>Ganzjährig</td></tr>
+      <tr><td>Büffel</td><td>Sehr hoch</td><td>Ganzjährig</td></tr>
+      <tr><td>Flusspferde</td><td>Hoch</td><td>Am Mara River</td></tr>
+      <tr><td>Krokodile</td><td>Hoch</td><td>Am Mara River</td></tr>
+      <tr><td>Geparden</td><td>Gut</td><td>Offene Savanne</td></tr>
+      <tr><td>Leoparden</td><td>Mittel</td><td>Nachtaktiv, schwer zu finden</td></tr>
+      <tr><td>Nashörner</td><td>Gering (selten)</td><td>Süd-Mara-Reservat</td></tr>
+      <tr><td>Gnus (resident)</td><td>Mittel</td><td>Eine kleinere Herde bleibt ganzjährig</td></tr>
+      <tr><td>Zebras</td><td>Hoch</td><td>Ganzjährig</td></tr>
+      <tr><td>Giraffen</td><td>Hoch</td><td>Ganzjährig</td></tr>
+    </table>
+
+    <div class="note">
+      <strong>Fazit:</strong> Wer die Große Migration erleben möchte, müsste im August oder September fahren. Für unsere Reisezeiträume gilt: Herbstferien (Oktober) bietet die letzte kleine Chance – aber wir sollten mit einer klassischen Safari-Erfahrung ohne Migration planen. Das reicht für ein unvergessliches Erlebnis.
+    </div>
+
+    <p style="font-size:0.82rem;color:#aaa;margin-top:1rem;">Quelle: Perplexity-Recherche November 2026. Weitere Details: <a href="reisezeit.html" style="color:#2d5a27;">Reisezeit-Vergleich</a></p>
+
+  </main>
+
+  <footer>&copy; 2026 &ndash; Kenia-Reiseplanung &nbsp;|&nbsp; Stand: November 2026</footer>
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      this.closest('nav').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

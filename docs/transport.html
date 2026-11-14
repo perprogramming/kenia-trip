@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transport – Kenia 2027</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; background: #faf7f2; color: #2c2c2c; line-height: 1.7; }
+    header { background: #2d5a27; color: #fff; text-align: center; padding: 2.5rem 1.5rem; }
+    header h1 { font-size: 2.2rem; }
+    header p { opacity: 0.85; margin-top: 0.3rem; }
+    nav { background: #1e3d1a; padding: 0.6rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.2rem 1.2rem; justify-content: center; }
+    nav a { color: #c8dfc5; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    nav a:hover, nav a.active { color: #fff; border-color: #7cb874; }
+    main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: #7cb874; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e0d9ce; }
+    h2 { font-size: 1.5rem; color: #1e3d1a; margin-bottom: 0.4rem; }
+    h3 { font-size: 1.1rem; color: #2d5a27; margin: 1.5rem 0 0.5rem; }
+    p { color: #444; margin-bottom: 0.8rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 2rem; font-size: 0.92rem; }
+    th { background: #2d5a27; color: #fff; padding: 0.5rem 0.8rem; text-align: left; }
+    td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #e0d9ce; vertical-align: top; }
+    tr:nth-child(even) td { background: #f9f6f0; }
+    .option-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 1rem 0 2rem; }
+    .opt { background: #fff; border: 1px solid #e0d9ce; border-radius: 10px; padding: 1.2rem 1.4rem; }
+    .opt h3 { margin-top: 0; }
+    .opt .price { font-size: 1.3rem; font-weight: bold; color: #2d5a27; margin: 0.4rem 0; }
+    .opt .details { font-size: 0.88rem; color: #666; }
+    .pro-con { display: flex; gap: 0.5rem; flex-direction: column; margin-top: 0.5rem; font-size: 0.88rem; }
+    .pro { color: #2d7a27; }
+    .con { color: #c0392b; }
+    .note { background: #f0f7ee; border-left: 4px solid #2d5a27; border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; font-size: 0.9rem; color: #2c4a28; margin: 0 0 2rem; }
+    .tip { background: #fff9e6; border-left: 4px solid #e6b800; border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; font-size: 0.9rem; color: #5a4a00; margin: 0 0 2rem; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.8rem 0; }
+    .tag { background: #e8f4e5; color: #2d5a27; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.8rem; }
+    .todo-list { list-style: none; padding: 0; margin: 0.5rem 0 1.5rem; }
+    .todo-list li { padding: 0.35rem 0; color: #555; font-size: 0.92rem; }
+    .todo-list li::before { content: "☐ "; color: #7cb874; }
+    footer { text-align: center; padding: 2rem; font-size: 0.82rem; color: #aaa; border-top: 1px solid #e0d9ce; margin-top: 2rem; }
+    /* ── Mobile Nav ── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #c8dfc5;
+      margin: 5px 0;
+      transition: all 0.25s;
+    }
+    nav { position: relative; }
+
+    @media (max-width: 700px) {
+      .option-cards { grid-template-columns: 1fr; }
+
+      nav {
+        padding: 0.5rem 1rem;
+        justify-content: flex-start;
+        min-height: 42px;
+        align-items: center;
+      }
+      .nav-toggle { display: block; }
+      nav a {
+        display: none;
+        width: 100%;
+        padding: 0.7rem 0.5rem;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      nav a:last-child { border-bottom: none; }
+      nav.open a { display: block; }
+      nav.open { flex-wrap: wrap; padding-top: 3rem; }
+
+      main { padding: 0 1rem; }
+      table { font-size: 0.82rem; }
+      td, th { padding: 0.4rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Transport</h1>
+    <p>Nairobi &rarr; Mara &middot; Nairobi &rarr; Küste &middot; Inlandsflüge &middot; SGR-Zug</p>
+  </header>
+
+  <nav>
+    <button class="nav-toggle" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+    <a href="index.html">Übersicht</a>
+    <a href="route.html">Route</a>
+    <a href="unterkunft.html">Unterkunft</a>
+    <a href="transport.html" class="active">Transport</a>
+    <a href="budget.html">Budget</a>
+    <a href="reisezeit.html">Reisezeit</a>
+    <a href="regenzeit.html">Regenzeit</a>
+    <a href="migration.html">Migration</a>
+  </nav>
+
+  <main>
+
+    <!-- ═══ NAIROBI → MARA ══════════════════════════════════════════════════════════════ -->
+    <p class="section-label">Nairobi → Massai Mara</p>
+    <h2>Nairobi &rarr; Massai Mara</h2>
+
+    <div class="option-cards">
+      <div class="opt">
+        <h3>✈️ Inlandsflug</h3>
+        <div class="price">165–235 € p.P.</div>
+        <div class="details">Hin+Rück ca. 320–455 € p.P. | Gesamt 4 Pax: 1.275–1.820 €</div>
+        <div class="pro-con">
+          <span class="pro">✓ Schnell (45–75 Min.)</span>
+          <span class="pro">✓ Kein Stress, direkt ans Ziel</span>
+          <span class="pro">✓ SafariLink oder AirKenya</span>
+          <span class="con">✗ Teurer</span>
+          <span class="con">✗ Kleine Propellermaschinen</span>
+        </div>
+      </div>
+      <div class="opt">
+        <h3>🚌 Shuttle (Mara Explorers)</h3>
+        <div class="price">~300 € Hin+Rück</div>
+        <div class="details">Ca. 150 € pro Strecke für die Gruppe | Normales Auto, koordiniert durch Camp</div>
+        <div class="pro-con">
+          <span class="pro">✓ Günstig, kein Mietwagen nötig</span>
+          <span class="pro">✓ Direktverbindung durch Camp</span>
+          <span class="con">✗ 5–6 Std. Fahrt</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note" style="background:#fff3cd;border-color:#e6b800;color:#5a4a00;">
+      <strong>⚠️ Expertenwarnung (Kontakt vor Ort, November 2026):</strong> Selbstfahrt mit Mietwagen ohne Kenia-Erfahrung wird dringend abgeraten. Polizeikontrollen können teuer werden; Navigation im Park ist für Unkundige gefährlich. Empfehlung: Shuttle von Mara Explorers oder Inlandsflug.
+    </div>
+
+    <table>
+      <tr><th>Option</th><th>Preis gesamt (4 Pax, Hin+Rück)</th><th>Zeit</th><th>Empfehlung</th></tr>
+      <tr><td><s>Mietwagen (4x4)</s></td><td><s>~365–730 €</s></td><td><s>5–6 Std.</s></td><td>⚠️ Nicht empfohlen</td></tr>
+      <tr><td>Shuttle Mara Explorers</td><td>~300 €</td><td>5–6 Std.</td><td>✓ Günstige komfortable Option</td></tr>
+      <tr><td>Inlandsflug (SafariLink/AirKenya)</td><td>1.275–1.820 €</td><td>45–75 Min.</td><td>✓ Schnellste Option</td></tr>
+    </table>
+
+    <!-- ═══ NAIROBI → KÜSTE ══════════════════════════════════════════════════════════════ -->
+    <p class="section-label">Nairobi → Küste</p>
+    <h2>Nairobi &rarr; Küste (Watamu)</h2>
+
+    <div class="note">
+      <strong>Expertenempfehlung (Kontakt vor Ort, November 2026):</strong> <em>Hin mit dem Zug</em> (Erlebnis + günstig), <em>zurück Flug von Malindi</em> nach Nairobi. Flüge ab knapp unter 100 € p.P. möglich, wenn rechtzeitig direkt bei der Airline gebucht.
+    </div>
+
+    <div class="option-cards">
+      <div class="opt">
+        <h3>✈️ Inlandsflug</h3>
+        <div class="price">ab ~100 € p.P.</div>
+        <div class="details">Nairobi → Malindi (15 km von Watamu) | Gesamt 4 Pax Hin+Rück: 510–1.235 € (bei rechtzeitiger Buchung günstiger)</div>
+        <div class="pro-con">
+          <span class="pro">✓ Schnell, direkt nach Malindi</span>
+          <span class="pro">✓ Günstiger bei Frühbuchung direkt bei Airline</span>
+          <span class="con">✗ Teurer als Zug</span>
+        </div>
+      </div>
+      <div class="opt">
+        <h3>🚄 SGR-Zug + Taxi</h3>
+        <div class="price">7–10 € p.P. + ~75 € Taxi</div>
+        <div class="details">Nairobi → Mombasa (5,5–7,5 Std.) + Taxi Mombasa → Watamu (~75 € Gruppe) | Gesamt 4 Pax Hin: ~130–155 €</div>
+        <div class="pro-con">
+          <span class="pro">✓ Sehr günstig</span>
+          <span class="pro">✓ Tolles Erlebnis (Savanne, Tsavo-Gebiet)</span>
+          <span class="pro">✓ Taxi-Kontakt via Bruder (Minivan)</span>
+          <span class="con">✗ ~8–9 Std. Gesamtreisezeit nach Watamu</span>
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <tr><th>Option</th><th>Klasse/Details</th><th>Preis p.P. (Hin+Rück)</th><th>Gesamt 4 Pax</th><th>Fahrzeit</th></tr>
+      <tr><td>Inlandsflug (Nairobi → Malindi)</td><td>Economy</td><td>ab ~100 € (Frühbuchung)</td><td>510–1.235 €</td><td>~1 Std.</td></tr>
+      <tr><td>SGR-Zug (Nairobi → Mombasa)</td><td>Economy</td><td>7–10 €</td><td>~55–80 €</td><td>5,5–7,5 Std.</td></tr>
+      <tr><td>SGR-Zug (Nairobi → Mombasa)</td><td>1. Klasse</td><td>~31 €</td><td>~248 €</td><td>5,5–7,5 Std.</td></tr>
+      <tr><td>Taxi Mombasa → Watamu</td><td>Minivan (Bruder-Kontakt)</td><td>–</td><td>~75 € pro Strecke</td><td>~1,5–2 Std.</td></tr>    </table>
+
+    <div class="tip">
+      <strong>Kombinationsempfehlung:</strong> Hin Zug (ca. 130–155 € gesamt für 4 Pax inkl. Taxi) + zurück Flug von Malindi (~200–400 € bei Frühbuchung). Gesamtkosten deutlich günstiger als Hin+Rück Flug.
+    </div>
+
+    <!-- ═══ NAIVASHA ══════════════════════════════════════════════════════════════════════ -->
+    <p class="section-label">Nairobi → Lake Naivasha</p>
+    <h2>Nairobi &rarr; Lake Naivasha</h2>
+    <p>Ca. 90 km, ~1,5–2 Std. Fahrt. Gut erreichbar – kein 4x4 nötig. Bruder hat Fahrerkontakt: ca. <strong>75 € pro Strecke</strong> für die Gruppe (Minivan). Matatu (Minibus) ab Nairobi möglich, aber weniger komfortabel.</p>
+
+    <div class="tag-row">
+      <span class="tag">~90 km</span>
+      <span class="tag">~1,5–2 Std.</span>
+      <span class="tag">Kein 4x4 nötig</span>
+      <span class="tag">Gut ausgebaute Straße</span>
+      <span class="tag">Fahrer-Kontakt via Bruder: ~75 €</span>
+    </div>
+
+    <p class="section-label">Offene Fragen</p>
+    <ul class="todo-list">
+      <li>Mara-Anreise: Inlandsflug (1.275–1.820 €) oder Shuttle Mara Explorers (~300 €)?</li>
+      <li>Küste: Zug hin + Flug zurück von Malindi (Expertenempfehlung) oder Hin+Rück Flug?</li>
+      <li>Naivasha: Fahrer über Bruder (~75 €/Strecke) oder eigener Mietwagen?</li>
+    </ul>
+
+    <p style="font-size:0.82rem;color:#aaa;margin-top:1rem;">Quelle: Perplexity-Recherche, November 2026. Preise: 1 USD = 0,91 €.</p>
+
+  </main>
+
+  <footer>&copy; 2026 &ndash; Kenia-Reiseplanung &nbsp;|&nbsp; Stand: November 2026</footer>
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      this.closest('nav').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

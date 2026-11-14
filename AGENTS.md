@@ -42,6 +42,27 @@ bitte auf Deutsch antworten und Dateien auf Deutsch befüllen.
 
 Dateien, die noch nicht existieren, werden angelegt, sobald das Thema relevant wird.
 
+## MCP-Server
+
+Für die Reiseplanung ist der Airbnb MCP-Server eingerichtet.
+
+| Server | Paket | Zweck |
+|---|---|---|
+| `airbnb` | `@openbnb/mcp-server-airbnb` | Unterkünfte auf Airbnb suchen |
+
+Konfiguration in `~/.claude/settings.json`:
+
+```json
+"mcpServers": {
+  "airbnb": {
+    "command": "npx",
+    "args": ["-y", "@openbnb/mcp-server-airbnb"]
+  }
+}
+```
+
+Hinweis: MCP-Server werden nur beim Start von Claude Code geladen. Nach Änderungen an der Konfiguration muss Claude Code neu gestartet werden.
+
 ## Webseite (GitHub Pages)
 
 Die Reiseplanung wird als Webseite unter https://perprogramming.github.io/kenia-trip/ veröffentlicht.

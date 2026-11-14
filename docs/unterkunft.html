@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unterkunft – Kenia 2027</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; background: #faf7f2; color: #2c2c2c; line-height: 1.7; }
+    header { background: #2d5a27; color: #fff; text-align: center; padding: 2.5rem 1.5rem; }
+    header h1 { font-size: 2.2rem; }
+    header p { opacity: 0.85; margin-top: 0.3rem; }
+    nav { background: #1e3d1a; padding: 0.6rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.2rem 1.2rem; justify-content: center; }
+    nav a { color: #c8dfc5; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    nav a:hover, nav a.active { color: #fff; border-color: #7cb874; }
+    main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: #7cb874; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e0d9ce; }
+    h2 { font-size: 1.5rem; color: #1e3d1a; margin-bottom: 0.4rem; }
+    h3 { font-size: 1.1rem; color: #2d5a27; margin: 1.5rem 0 0.5rem; }
+    p { color: #444; margin-bottom: 0.8rem; }
+    .card { background: #fff; border: 1px solid #e0d9ce; border-radius: 10px; overflow: hidden; margin-bottom: 2rem; }
+    .card-img { width: 100%; height: 260px; object-fit: cover; }
+    .card-body { padding: 1.5rem 1.8rem; }
+    .price-box { display: inline-flex; gap: 1.5rem; flex-wrap: wrap; background: #f0f7ee; border-radius: 8px; padding: 0.8rem 1.2rem; margin: 1rem 0; font-size: 0.93rem; }
+    .price-item strong { display: block; color: #1e3d1a; font-size: 1.05rem; }
+    .price-item span { color: #666; font-size: 0.82rem; }
+    .ausgebucht { color: #c0392b; font-weight: bold; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.8rem 0; }
+    .tag { background: #e8f4e5; color: #2d5a27; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.8rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.92rem; }
+    th { background: #2d5a27; color: #fff; padding: 0.5rem 0.8rem; text-align: left; }
+    td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #e0d9ce; }
+    tr:nth-child(even) td { background: #f9f6f0; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .btn { display: inline-block; padding: 0.35rem 0.9rem; background: #2d5a27; color: #fff; border-radius: 4px; font-size: 0.85rem; text-decoration: none; transition: background 0.2s; }
+    .btn:hover { background: #1e3d1a; }
+    .btn-ghost { background: transparent; color: #2d5a27; border: 1px solid #2d5a27; }
+    .btn-ghost:hover { background: #f0f7ee; }
+    .todo-list { list-style: none; padding: 0; margin: 0.5rem 0 1.5rem; }
+    .todo-list li { padding: 0.35rem 0; color: #555; font-size: 0.92rem; }
+    .todo-list li::before { content: "☐ "; color: #7cb874; }
+    .tip { background: #fff9e6; border-left: 4px solid #e6b800; border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; font-size: 0.9rem; color: #5a4a00; margin: 1rem 0 1.5rem; }
+    footer { text-align: center; padding: 2rem; font-size: 0.82rem; color: #aaa; border-top: 1px solid #e0d9ce; margin-top: 2rem; }
+    /* ── Mobile Nav ── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #c8dfc5;
+      margin: 5px 0;
+      transition: all 0.25s;
+    }
+    nav { position: relative; }
+
+    @media (max-width: 700px) {
+      .price-box { flex-direction: column; gap: 0.5rem; }
+      .card-img { height: 200px; }
+
+      nav {
+        padding: 0.5rem 1rem;
+        justify-content: flex-start;
+        min-height: 42px;
+        align-items: center;
+      }
+      .nav-toggle { display: block; }
+      nav a {
+        display: none;
+        width: 100%;
+        padding: 0.7rem 0.5rem;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      nav a:last-child { border-bottom: none; }
+      nav.open a { display: block; }
+      nav.open { flex-wrap: wrap; padding-top: 3rem; }
+
+      main { padding: 0 1rem; }
+      table { font-size: 0.82rem; }
+      td, th { padding: 0.4rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Unterkunft</h1>
+    <p>Massai Mara &middot; Lake Naivasha &middot; Watamu</p>
+  </header>
+
+  <nav>
+    <button class="nav-toggle" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+    <a href="index.html">Übersicht</a>
+    <a href="route.html">Route</a>
+    <a href="unterkunft.html" class="active">Unterkunft</a>
+    <a href="transport.html">Transport</a>
+    <a href="budget.html">Budget</a>
+    <a href="reisezeit.html">Reisezeit</a>
+    <a href="regenzeit.html">Regenzeit</a>
+    <a href="migration.html">Migration</a>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════════════════════════════ MASSAI MARA ═══════════════════════════════ -->
+    <p class="section-label" id="mara">Massai Mara</p>
+    <h2>Massai Mara</h2>
+    <p>Herzstück der Safari. Geplant: max. <strong>2 Game Drives</strong> in den Park, 2 Nächte im Camp.</p>
+
+    <div class="card">
+      <img class="card-img"
+        src="https://a0.muscache.com/im/pictures/hosting/Hosting-548139208810754740/original/c0e1b3b2-d9e6-449e-ac3c-0b5f2c5fb3e7.jpeg?im_w=960"
+        alt="Mara Explorers Camp"
+        onerror="this.src='https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=960&q=80'">
+      <div class="card-body">
+        <h2>Mara Explorers Camp &#11088;</h2>
+        <h3>Persönlicher Kontakt: Moses &amp; Laura</h3>
+        <p>Kleines, intimes Luxuscamp direkt im Reservat, am Talek River, ca. 3 km vom Sekenani-Gate. Sehr ruhige, exklusive Atmosphäre – Fine-Dining-Niveau, kein Familien-/Massentourismus. Wir haben persönlichen Kontakt zu den Betreibern.</p>
+
+        <div class="tag-row">
+          <span class="tag">Vollpension</span>
+          <span class="tag">Eigener Jeep</span>
+          <span class="tag">Bis 3 Game Drives/Tag</span>
+          <span class="tag">Heißwasser</span>
+          <span class="tag">Wein &amp; Bier inklusive</span>
+          <span class="tag">Wäsche inklusive</span>
+        </div>
+
+        <div class="price-box">
+          <div class="price-item">
+            <strong class="ausgebucht">Ausgebucht</strong>
+            <span>Osterferien (22. März – 3. April 2027)</span>
+          </div>
+          <div class="price-item">
+            <strong>1.575 € Gesamt</strong>
+            <span>Herbstferien (23. Okt. – 5. Nov. 2027), 4 Personen</span>
+          </div>
+        </div>
+
+        <p><em>Hinweis: WLAN nur im Empfangsbereich. Eigenanreise möglich – Camp fährt dann mit eigenem Jeep in den Park. Geschätzte Einzelpreis: 455–730 €/Person/Nacht inkl. Destination Fee (~64 €/P/N).</em></p>
+
+        <div class="note" style="background:#f0f7ee;border-color:#2d5a27;">
+          <strong>Experteneinschätzung (Kontakt vor Ort, November 2026):</strong> Preis für 4 Personen, 2 Nächte, 2 Game Drives <strong>eher unter 2.000 €</strong> – günstiger als Mara Siria. Camp bietet auch <strong>Shuttle-Service</strong> von Nairobi: ca. <strong>150 € pro Strecke</strong> (normales Auto). Direktanfrage bei Moses über unseren Bruder möglich.
+        </div>
+
+        <div class="btn-row">
+          <a class="btn btn-ghost" href="https://www.airbnb.de/rooms/548139208810754740" target="_blank">Airbnb-Listing</a>
+          <a class="btn btn-ghost" href="https://mara-explorers.com/about-us/" target="_blank">Website</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h2>Mara Siria Tented Camp</h2>
+        <h3>Persönlicher Kontakt verfügbar</h3>
+        <p>Hochklassiges Luxuscamp, Transfer von Nairobi buchbar, 2 Game Drives/Tag oder 1 Ganztages-Drive möglich.</p>
+
+        <div class="note" style="background:#fff3cd;border-color:#e6b800;color:#5a4a00;">
+          <strong>Experteneinschätzung (Kontakt vor Ort, November 2026):</strong> Gesamtpaket für 4 Personen, 2 Nächte, 2 Game Drives + Transfer Nairobi: <strong>~4.000 €</strong> (ohne persönlichen Kontakt). Mit Kontakt über Bruder (kennt Peter persönlich): evtl. EA Resident Rates + Deutsche Schule Rabatt – dann eher <strong>~3.000 €</strong>. Ohne persönlichen Kontakt deutlich teurer als Mara Explorers.
+        </div>
+
+        <table>
+          <tr><th>Paket</th><th>Leistungen</th><th>Preis (ca.)</th></tr>
+          <tr><td>Self-drive</td><td>Vollpension, Kaffee, Tee – ohne Transfers/Game Drives</td><td>345–635 €/Zimmer/Nacht</td></tr>
+          <tr><td>Ground-Paket</td><td>+ Airstrip-Transfers, 2 Game Drives/Tag</td><td>auf Anfrage</td></tr>
+          <tr><td>Road-Package</td><td>Transfer ab Nairobi (Gruppenminibus, 6 Pax), 3T/2N</td><td>~208 €/P</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h2>Variante 3: Selbstfahrt</h2>
+        <p>Anreise Nairobi → Mara: ~5–6 Std. Fahrt, 4x4-Mietwagen erforderlich. Maximale Flexibilität, günstigste Option – aber zeitaufwändig, Navigation im Park anspruchsvoll.</p>
+      </div>
+    </div>
+
+    <h3>Vergleich Mara-Unterkünfte</h3>
+    <table>
+      <tr><th></th><th>Selbstfahrt</th><th>Mara Explorers</th><th>Mara Siria</th></tr>
+      <tr><td>Kosten</td><td>Günstig</td><td>Mittel-Hoch</td><td>Hoch</td></tr>
+      <tr><td>Aufwand</td><td>Hoch</td><td>Niedrig</td><td>Sehr niedrig</td></tr>
+      <tr><td>Safari-Qualität</td><td>Eigenverantwortung</td><td>Sehr gut (eigener Jeep)</td><td>Sehr gut</td></tr>
+      <tr><td>Persönl. Kontakt</td><td>Nein</td><td>Ja (Moses &amp; Laura)</td><td>Ja</td></tr>
+      <tr><td>Transfer Nairobi</td><td>Selbst</td><td>Selbst, oder Flug</td><td>Buchbar</td></tr>
+    </table>
+
+    <!-- ═══════════════════════════════════ LAKE NAIVASHA ═══════════════════════════════ -->
+    <p class="section-label" id="naivasha">Lake Naivasha – Crescent Island</p>
+    <h2>Lake Naivasha &mdash; Crescent Island</h2>
+    <p>Crescent Island ist ein privates Wildschutzgebiet auf dem Lake Naivasha. Einzigartiger <strong>Fuß-Safari-Charakter</strong>: man geht frei zwischen Giraffen, Zebras, Gazellen, Warzenschweinen, Wasserböcken, Flusspferden und vielen Vögeln. Diese Erfahrung kennen wir bereits und sie war sehr schön.</p>
+
+    <div class="card">
+      <img class="card-img"
+        src="https://a0.muscache.com/im/pictures/miso/Hosting-52229925/original/c0e1b3b2-3e2a-4b10-ab94-0f2c5fb3e7a1.jpeg?im_w=960"
+        alt="Fish Eagle Cottage Crescent Island"
+        onerror="this.src='https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?w=960&q=80'">
+      <div class="card-body">
+        <h2>Fish Eagle Cottage &mdash; Crescent Island</h2>
+        <p>Direkt auf der Insel gelegen, mitten im Wildschutzgebiet. 2 Schlafzimmer, 3 Betten, 1 Bad.</p>
+
+        <div class="tag-row">
+          <span class="tag">2 Schlafzimmer</span>
+          <span class="tag">Direkt auf Crescent Island</span>
+          <span class="tag">4,96 / 5 Sterne (227 Bew.)</span>
+          <span class="tag">Bootsfahrt inklusive</span>
+        </div>
+
+        <div class="price-box">
+          <div class="price-item">
+            <strong class="ausgebucht">Nicht verfügbar</strong>
+            <span>Osterferien 2027</span>
+          </div>
+          <div class="price-item">
+            <strong>665 € Gesamt</strong>
+            <span>Herbstferien, 3 Nächte, 4 Personen</span>
+          </div>
+        </div>
+
+        <div class="note" style="background:#f0f7ee;border-color:#2d5a27;">
+          <strong>Experteneinschätzung (Kontakt vor Ort, November 2026):</strong> Preis ca. <strong>~1.000 €</strong> für 4 Personen, 3 Nächte – Schätzung bestätigt. Anreise über Bruder-Kontakt: <strong>ca. 75 € pro Strecke</strong> (Fahrer mit Minivan, mehrfach genutzte Route). Hin+Rück ~150 €.
+        </div>
+
+        <div class="btn-row">
+          <a class="btn btn-ghost" href="https://www.airbnb.de/rooms/52229925" target="_blank">Airbnb-Listing</a>
+          <a class="btn btn-ghost" href="https://www.crescentisland.co/" target="_blank">Website Crescent Island</a>
+        </div>
+      </div>
+    </div>
+
+    <h3>Mögliches 3-Tage-Programm</h3>
+    <table>
+      <tr><th>Tag</th><th>Programm</th></tr>
+      <tr><td>Tag 1</td><td>Ankunft Naivasha, Bootsfahrt zur Insel, Einzug Cottage, Sonnenuntergangs-Walk</td></tr>
+      <tr><td>Tag 2</td><td>Morgen-Walk (bestes Licht), freie Zeit, Nachmittag-Walk, Bootsfahrt</td></tr>
+      <tr><td>Tag 3</td><td>Morgen-Walk oder Ausflug, Abreise nach Mittagessen</td></tr>
+    </table>
+    <p><em>Eintritt Tagesbesuch: ca. 30 €/Person (Nicht-Residente). Öffnungszeiten: 8:30–17:30 Uhr.</em></p>
+
+    <!-- ═══════════════════════════════════ KÜSTE ═══════════════════════════════════════ -->
+    <p class="section-label" id="kueste">Küste &mdash; Watamu</p>
+    <h2>Küste: Watamu</h2>
+    <p>Ca. 120 km nördlich von Mombasa. Klein, ruhig, Korallenriff-Nationalpark – hervorragend zum Tauchen und Schnorcheln. Rückflug von Malindi (15 km entfernt).</p>
+
+    <div class="note" style="background:#f0f7ee;border-color:#2d5a27;">
+      <strong>Experteneinschätzung (Kontakt vor Ort, November 2026):</strong> <strong>Definitiv Watamu</strong> empfohlen. Rückflug von <strong>Malindi</strong> nach Nairobi möglich (nur 15 km entfernt). Realistischer Preisrahmen für ein Haus: <strong>750–1.500 €</strong> für 3–4 Nächte, je nach Ausstattung.
+    </div>
+
+    <div class="card">
+      <img class="card-img"
+        src="https://a0.muscache.com/im/pictures/miso/Hosting-39127675/original/c0e1b3b2-0b5f-4b10-ab94-0f2c5fb3e7a1.jpeg?im_w=960"
+        alt="Njera Haus Watamu"
+        onerror="this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=960&q=80'">
+      <div class="card-body">
+        <h2>Njera Haus &mdash; Watamu</h2>
+        <p>Drei Schlafzimmer mit privatem Pool und direkter Strandlage am Indischen Ozean. Ideal für vier Personen.</p>
+
+        <div class="tag-row">
+          <span class="tag">3 Schlafzimmer</span>
+          <span class="tag">Privater Pool</span>
+          <span class="tag">Direkte Strandlage</span>
+          <span class="tag">Klimaanlage</span>
+          <span class="tag">BBQ</span>
+          <span class="tag">Hängematte</span>
+          <span class="tag">Sonnenliegen</span>
+          <span class="tag">HDTV</span>
+          <span class="tag">Sonos</span>
+        </div>
+
+        <div class="tip">
+          <strong>Preise noch nicht ermittelt (Stand November 2026):</strong> Das Listing erscheint nicht in den Suchergebnissen für die geplanten Zeiträume. Bitte Preise direkt in Airbnb prüfen (ID: 39127675).<br>
+          <strong>Osterferien</strong> (27. März – 3. April 2027, 7 Nächte) und
+          <strong>Herbstferien</strong> (30. Oktober – 5. November 2027, 6 Nächte).
+        </div>
+
+        <div class="btn-row">
+          <a class="btn btn-ghost" href="https://www.airbnb.de/rooms/39127675" target="_blank">Airbnb-Listing</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════ OFFENE FRAGEN ════════════════════════════════ -->
+    <p class="section-label">Offene Fragen</p>
+    <ul class="todo-list">
+      <li>Mara Explorers oder Mara Siria? (oder Selbstfahrt?)</li>
+      <li>Wie viele Nächte in der Mara? (min. 2 empfohlen für 2 Game Drives)</li>
+      <li>Küste: Watamu – Njera Haus Preise direkt in Airbnb prüfen (ID: 39127675)</li>
+    </ul>
+
+    <p style="font-size:0.82rem;color:#aaa;margin-top:1rem;">Quelle: Perplexity-Recherche, Airbnb-Recherche November 2026. Preise: 1 USD = 0,91 €, 1 EUR = 144 KES.</p>
+
+  </main>
+
+  <footer>&copy; 2026 &ndash; Kenia-Reiseplanung &nbsp;|&nbsp; Stand: November 2026</footer>
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      this.closest('nav').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>

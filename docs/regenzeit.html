@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regenzeit – Kenia 2027</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; background: #faf7f2; color: #2c2c2c; line-height: 1.7; }
+    header { background: #2d5a27; color: #fff; text-align: center; padding: 2.5rem 1.5rem; }
+    header h1 { font-size: 2.2rem; }
+    header p { opacity: 0.85; margin-top: 0.3rem; }
+    nav { background: #1e3d1a; padding: 0.6rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.2rem 1.2rem; justify-content: center; }
+    nav a { color: #c8dfc5; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    nav a:hover, nav a.active { color: #fff; border-color: #7cb874; }
+    main { max-width: 860px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    .section-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: #7cb874; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e0d9ce; }
+    h2 { font-size: 1.5rem; color: #1e3d1a; margin-bottom: 0.4rem; }
+    h3 { font-size: 1.1rem; color: #2d5a27; margin: 1.5rem 0 0.5rem; }
+    p { color: #444; margin-bottom: 0.8rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 2rem; font-size: 0.92rem; }
+    th { background: #2d5a27; color: #fff; padding: 0.5rem 0.8rem; text-align: left; }
+    td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #e0d9ce; vertical-align: top; }
+    tr:nth-child(even) td { background: #f9f6f0; }
+    .kalender { display: grid; grid-template-columns: repeat(12, 1fr); gap: 0; border: 1px solid #e0d9ce; border-radius: 10px; overflow: hidden; margin: 1rem 0 2rem; }
+    .monat { text-align: center; padding: 0.5rem 0.2rem; font-size: 0.75rem; }
+    .monat .name { font-weight: bold; color: #2c2c2c; display: block; }
+    .monat .typ { font-size: 0.65rem; display: block; }
+    .m-trocken { background: #f0f7ee; }
+    .m-masika { background: #cce5ff; color: #0056a0; }
+    .m-vuli { background: #b3d9ff; color: #003d70; }
+    .m-ok { background: #d4edda; }
+    .m-warm { background: #fff3cd; }
+    .legende { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 0 0 2rem; font-size: 0.82rem; }
+    .legende-item { display: flex; align-items: center; gap: 0.3rem; }
+    .legende-dot { width: 12px; height: 12px; border-radius: 3px; }
+    .note { background: #f0f7ee; border-left: 4px solid #2d5a27; border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; font-size: 0.9rem; color: #2c4a28; margin: 0 0 2rem; }
+    .warn { background: #fff3cd; border-left: 4px solid #e6b800; border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; font-size: 0.9rem; color: #5a4a00; margin: 0 0 2rem; }
+    .good { background: #d4edda; border-left: 4px solid #28a745; border-radius: 0 8px 8px 0; padding: 0.9rem 1.2rem; font-size: 0.9rem; color: #155724; margin: 0 0 2rem; }
+    footer { text-align: center; padding: 2rem; font-size: 0.82rem; color: #aaa; border-top: 1px solid #e0d9ce; margin-top: 2rem; }
+    /* ── Mobile Nav ── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #c8dfc5;
+      margin: 5px 0;
+      transition: all 0.25s;
+    }
+    nav { position: relative; }
+
+    @media (max-width: 700px) {
+      .kalender { grid-template-columns: repeat(6, 1fr); }
+
+      nav {
+        padding: 0.5rem 1rem;
+        justify-content: flex-start;
+        min-height: 42px;
+        align-items: center;
+      }
+      .nav-toggle { display: block; }
+      nav a {
+        display: none;
+        width: 100%;
+        padding: 0.7rem 0.5rem;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      nav a:last-child { border-bottom: none; }
+      nav.open a { display: block; }
+      nav.open { flex-wrap: wrap; padding-top: 3rem; }
+
+      main { padding: 0 1rem; }
+      table { font-size: 0.82rem; }
+      td, th { padding: 0.4rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Regenzeiten in Kenia</h1>
+    <p>Zwei Regenzeiten &mdash; Masika (lang) und Vuli (kurz)</p>
+  </header>
+
+  <nav>
+    <button class="nav-toggle" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+    <a href="index.html">Übersicht</a>
+    <a href="route.html">Route</a>
+    <a href="unterkunft.html">Unterkunft</a>
+    <a href="transport.html">Transport</a>
+    <a href="budget.html">Budget</a>
+    <a href="reisezeit.html">Reisezeit</a>
+    <a href="regenzeit.html" class="active">Regenzeit</a>
+    <a href="migration.html">Migration</a>
+  </nav>
+
+  <main>
+
+    <p class="section-label">Kenia-Klima im Jahresverlauf</p>
+    <h2>Zwei Regenzeiten</h2>
+    <p>Kenia hat zwei Regenzeiten: die <strong>Lange Regenzeit (Masika)</strong> von März bis Mai und die <strong>Kurze Regenzeit (Vuli)</strong> von Oktober bis November.</p>
+
+    <div class="kalender">
+      <div class="monat m-trocken"><span class="name">Jan</span><span class="typ">Trocken</span></div>
+      <div class="monat m-trocken"><span class="name">Feb</span><span class="typ">Trocken</span></div>
+      <div class="monat m-masika"><span class="name">Mär</span><span class="typ">Masika</span></div>
+      <div class="monat m-masika"><span class="name">Apr</span><span class="typ">Masika</span></div>
+      <div class="monat m-masika"><span class="name">Mai</span><span class="typ">Masika</span></div>
+      <div class="monat m-trocken"><span class="name">Jun</span><span class="typ">Trocken</span></div>
+      <div class="monat m-trocken"><span class="name">Jul</span><span class="typ">Trocken</span></div>
+      <div class="monat m-trocken"><span class="name">Aug</span><span class="typ">Trocken</span></div>
+      <div class="monat m-trocken"><span class="name">Sep</span><span class="typ">Trocken</span></div>
+      <div class="monat m-vuli"><span class="name">Okt</span><span class="typ">Vuli</span></div>
+      <div class="monat m-vuli"><span class="name">Nov</span><span class="typ">Vuli</span></div>
+      <div class="monat m-trocken"><span class="name">Dez</span><span class="typ">Trocken</span></div>
+    </div>
+
+    <div class="legende">
+      <div class="legende-item"><div class="legende-dot" style="background:#cce5ff;"></div> Lange Regenzeit (Masika)</div>
+      <div class="legende-item"><div class="legende-dot" style="background:#b3d9ff;"></div> Kurze Regenzeit (Vuli)</div>
+      <div class="legende-item"><div class="legende-dot" style="background:#f0f7ee;"></div> Trockenzeit</div>
+    </div>
+
+    <p class="section-label">Osterferien: Lange Regenzeit (Masika)</p>
+    <h2>März/April &mdash; Masika (Lange Regenzeit)</h2>
+
+    <table>
+      <tr><th>Aspekt</th><th>Massai Mara</th><th>Küste (Watamu)</th></tr>
+      <tr><td>Niederschlag</td><td>Hoch, täglich möglich</td><td>Mittel bis hoch</td></tr>
+      <tr><td>Wege</td><td>Matschig, 4x4 unbedingt nötig</td><td>Kein Problem</td></tr>
+      <tr><td>Vegetation</td><td>Üppig grün, sehr schön</td><td>Grün, frisch</td></tr>
+      <tr><td>Tiere</td><td>Gut sichtbar (weniger Vegetation im Grasbett)</td><td>Meer etwas aufgewühlt</td></tr>
+      <tr><td>Touristen</td><td>Wenig – ruhig</td><td>Wenig</td></tr>
+      <tr><td>Preise</td><td>Günstiger (Nebensaison)</td><td>Günstiger</td></tr>
+    </table>
+
+    <div class="warn">
+      <strong>Osterferien NRW (22. März – 3. April 2027):</strong> Mitten in der langen Regenzeit. Regen kann Safarifahrten erschweren. Camps können schwer erreichbar sein. <em>Mara Explorers ist für diese Zeit bereits ausgebucht.</em>
+    </div>
+
+    <p class="section-label">Herbstferien: Kurze Regenzeit (Vuli)</p>
+    <h2>Oktober/November &mdash; Vuli (Kurze Regenzeit)</h2>
+
+    <table>
+      <tr><th>Aspekt</th><th>Massai Mara</th><th>Küste (Watamu)</th></tr>
+      <tr><td>Niederschlag</td><td>Oktober: noch relativ trocken; November: Regen möglich</td><td>Oktober: gut; November: instabil</td></tr>
+      <tr><td>Wege</td><td>Meist gut befahrbar</td><td>Kein Problem</td></tr>
+      <tr><td>Vegetation</td><td>Ende Trockenzeit: etwas staubig, dann wieder grüner</td><td>Frischer werdend</td></tr>
+      <tr><td>Tiere</td><td>Sehr gut (Ende Migration, Tiere noch da)</td><td>Gut</td></tr>
+      <tr><td>Touristen</td><td>Mittel (Hochsaison klingt ab)</td><td>Mittel</td></tr>
+      <tr><td>Preise</td><td>Mittel bis hoch (Saison)</td><td>Mittel</td></tr>
+    </table>
+
+    <div class="good">
+      <strong>Herbstferien NRW (23. Oktober – 6. November 2027):</strong> Oktober noch relativ trocken. Tiersichtungen gut bis sehr gut. Kurze Regenzeit beginnt erst – Oktober ist der bessere Monat, November kann instabiler werden. Gute Kompromisslösung.
+    </div>
+
+    <p class="section-label">Gesamtbewertung</p>
+    <table>
+      <tr><th></th><th>Osterferien (März)</th><th>Herbstferien (Okt./Nov.)</th></tr>
+      <tr><td>Regenrisiko Mara</td><td>Hoch (Masika)</td><td>Mittel (Vuli beginnt)</td></tr>
+      <tr><td>Regenrisiko Küste</td><td>Mittel bis hoch</td><td>Mittel (Oktober besser als November)</td></tr>
+      <tr><td>Safariqualität</td><td>Eingeschränkt (Matsch)</td><td>Gut bis sehr gut</td></tr>
+      <tr><td>Strandqualität</td><td>Eingeschränkt</td><td>Gut (Oktober)</td></tr>
+      <tr><td>Fotografieren</td><td>Schwieriger (Wolken, Regen)</td><td>Gut</td></tr>
+      <tr><td>Gesamtbewertung</td><td>⭐⭐½</td><td>⭐⭐⭐⭐</td></tr>
+    </table>
+
+    <p style="font-size:0.82rem;color:#aaa;margin-top:1rem;">Quellen: Perplexity-Recherche November 2026. Weitere Details: <a href="migration.html" style="color:#2d5a27;">Migration</a> &nbsp;|&nbsp; <a href="reisezeit.html" style="color:#2d5a27;">Reisezeit-Vergleich</a></p>
+
+  </main>
+
+  <footer>&copy; 2026 &ndash; Kenia-Reiseplanung &nbsp;|&nbsp; Stand: November 2026</footer>
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      this.closest('nav').classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>
